@@ -15,5 +15,16 @@
   "bugs": {
     "url": "https://github.com/sravsk/react-widget/issues"
   },
-  "homepage": "https://github.com/sravsk/react-widget#readme"
+  "homepage": "https://github.com/sravsk/react-widget#readme",
+  "dependencies": {
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
+  },
+  "devDependencies": {
+    "webpack": "^4.16.0",
+    "webpack-cli": "^3.0.8",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0"
+  }
 }
