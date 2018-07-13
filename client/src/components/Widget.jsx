@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col } from 'antd';
+import { Row, Col, Button } from 'antd';
 import { Transition } from 'react-transition-group';
 import 'antd/dist/antd.css';
 import '../../styles/widget-style.css'
@@ -10,6 +10,17 @@ class Widget extends React.Component {
 		this.state = {
 			open : false
 		}
+	}
+
+
+
+	 renderBody = () => {
+		if (this.state.open) {
+			return (
+				<span className="dock" onClick={this.handleToggleOpen}></span>
+				);
+		}
+		return '';
 	}
 
 	render() {
@@ -23,11 +34,12 @@ class Widget extends React.Component {
   				entering: { opacity: 0 },
   				entered:  { opacity: 1 },
 			}
+		const body = this.renderBody();
 		return (
+			<div className="docked-widget">
 			<Transition 
 				in={this.state.open} 
 				timeout={duration}>
-				<div className="docked-widget">
 					<Row className="widget-dialog">
 					<Col className="widget-title">Hi Sravanthi! </Col>
 					<span className="company-title">Salesforce Knowledge base</span>
@@ -38,8 +50,9 @@ class Widget extends React.Component {
 					<Row className="widget-footer">
 					Footer
 					</Row>
-				</div>
 			</Transition>
+			{body}
+			</div>
 			)
 	}
 }
