@@ -4,10 +4,16 @@ var DIST_DIR = path.join(__dirname, '/client/dist');
 
 module.exports = {
   mode: 'production',
-  entry: `${SRC_DIR}/index.js`,
+  //entry: `${SRC_DIR}/index.js`,
+  entry: './client/src/outputs/Embeddable-Widget.js',
   output: {
-    filename: 'bundle.js',
-    path: DIST_DIR
+   // filename: 'bundle.js',
+    path: DIST_DIR,
+    publicPath: '/',
+    filename: 'widget.js',
+    library: 'EmbeddableWidget',
+    libraryExport: 'default',
+    libraryTarget: 'window',
   },
   serve: {
     content: DIST_DIR
