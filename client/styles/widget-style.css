@@ -1,9 +1,10 @@
 .docked-widget {
-	position: fixed !important;
+    position: fixed !important;
     bottom: 20px !important;
     right: 10px !important;
     width: 200px !important;
     z-index: 9999 !important;
+    border: 1px solid #ccc;
 }
 
 .widget-dialog {

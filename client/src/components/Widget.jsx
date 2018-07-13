@@ -1,4 +1,6 @@
 import React from 'react';
+import { Row, Col } from 'antd';
+import 'antd/dist/antd.css';
 import '../../styles/widget-style.css'
 
 class Widget extends React.Component {
@@ -9,18 +11,17 @@ class Widget extends React.Component {
 	render() {
 		return (
 			<div className="docked-widget">
-				<div className="widget-dialog">
-				<div className="widget-title">
-				Hi Sravanthi! 
-				<span className="company-title">Salesforce Knowledge base</span>
-				</div>
-				<div className="widget-body">
-				<span className="body-title">Advice and anssers from Salesforce</span>
-				</div>
-				<div className="widget-footer">
+				<Row className="widget-dialog">
+					<Col className="widget-title">Hi Sravanthi! </Col>
+					<span className="company-title">Salesforce Knowledge base</span>
+					
+				</Row>
+				<Row className="widget-body">
+				<Col className="body-title">Advice and anssers from Salesforce</Col>
+				</Row>
+				<Row className="widget-footer">
 				Footer
-				</div>
-				</div>
+				</Row>
 			</div>
 			)
 	}

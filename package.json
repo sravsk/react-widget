@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-serve --config ./webpack.config.js"
+    "start": "webpack-serve --config ./webpack.config.js --port 3001"
   },
   "babel": {
     "presets": [
@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/sravsk/react-widget#readme",
   "dependencies": {
+    "antd": "^3.6.6",
     "react": "^16.4.1",
     "react-dom": "^16.4.1"
   },
