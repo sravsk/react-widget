@@ -70,10 +70,10 @@ class Widget extends React.Component {
 					<Row className="widget-dialog">
 					<Col span={18} className="widget-title">Hi Sravanthi! </Col>
 					<Col span={6} className="widget-header-icon" onClick={this.handleToggleOpen}>X</Col>
-					<span className="company-title">Salesforce Knowledge base</span>
+					<span className="company-title">CompanyX Knowledge base</span>
 					</Row>
 					<Row className="widget-body">
-					<Col className="body-title">Advice and anssers from Salesforce</Col>
+					<Col className="body-title">Advice and anssers from CompanyX</Col>
 					</Row>
 					<Row className="widget-footer">
 					Footer
