@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Button } from 'antd';
+import { Row, Col, Button, Icon } from 'antd';
 import { Transition } from 'react-transition-group';
 import 'antd/dist/antd.css';
 import '../../styles/widget-style.css'
@@ -8,16 +8,38 @@ class Widget extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			open : false
+			open : false,
+			showDockedWidget : true
 		}
 	}
 
+	handleToggleOpen = () => {
+		this.setState((prev) => {
+			let { showDockedWidget } = prev;
+			if (!prev.open) {
+				showDockedWidget = false;
+			}
+			return {
+				showDockedWidget,
+				open: !prev.open
+			}
+		})
+	}
 
+	handleWidgetExit = () => {
+		this.setState({
+			showDockedWidget: true
+		})
+	}
 
-	 renderBody = () => {
-		if (this.state.open) {
+	renderBody = () => {
+		if (this.state.showDockedWidget) {
 			return (
-				<span className="dock" onClick={this.handleToggleOpen}></span>
+				<Icon 
+					type="file-text" 
+					style={{ fontSize: 38, color: '#08c', borderRadius: '10px', backgroundColor: '#0088cc5e', padding: '15px'}} 
+					className="dock-button" 
+					onClick={this.handleToggleOpen} />
 				);
 		}
 		return '';
@@ -39,9 +61,15 @@ class Widget extends React.Component {
 			<div className="docked-widget">
 			<Transition 
 				in={this.state.open} 
-				timeout={duration}>
+				timeout={duration}
+				onExited={this.handleWidgetExit}>
+				 {status => (
+				 <div 
+				 style={{...defaultStyle, ...transitionStyles[status]}} 
+				 className={`widget widget-${status}`}>
 					<Row className="widget-dialog">
-					<Col className="widget-title">Hi Sravanthi! </Col>
+					<Col span={18} className="widget-title">Hi Sravanthi! </Col>
+					<Col span={6} className="widget-header-icon" onClick={this.handleToggleOpen}>X</Col>
 					<span className="company-title">Salesforce Knowledge base</span>
 					</Row>
 					<Row className="widget-body">
@@ -50,6 +78,8 @@ class Widget extends React.Component {
 					<Row className="widget-footer">
 					Footer
 					</Row>
+				</div>
+				)}
 			</Transition>
 			{body}
 			</div>

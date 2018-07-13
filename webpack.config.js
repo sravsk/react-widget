@@ -23,10 +23,11 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         include: SRC_DIR,
-        loader: 'babel-loader'
-        // query: {
-        //   presets: ['react', 'es2015']
-        // }
+        loader: 'babel-loader',
+        query: {
+          presets: ['react', 'es2015'],
+          plugins: ['transform-class-properties']
+        }
       },
       {
         test: /\.css$/,
