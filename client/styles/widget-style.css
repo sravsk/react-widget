@@ -34,3 +34,8 @@
     line-height: 30px !important;
     padding-left: 10px !important;
 }
+
+.widget-entered {
+    box-shadow: 0 5px 40px rgba(0,0,0,.16)!important;
+    border-radius: 8px!important;
+}
