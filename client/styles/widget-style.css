@@ -1,0 +1,36 @@
+.docked-widget {
+	position: fixed !important;
+    bottom: 20px !important;
+    right: 10px !important;
+    width: 200px !important;
+    z-index: 9999 !important;
+}
+
+.widget-dialog {
+    width: 200px !important;
+    border: 1px solid grey !important;
+    animation-duration: 0.2s !important;
+    animation-fill-mode: forwards !important;
+}
+
+.widget-title {
+    height: 30px !important;
+    line-height: 30px !important;
+    background: lightgrey !important;
+    color: grey !important;
+    padding-left: 10px !important;
+    display: flex !important;
+    align-items: stretch !important;
+}
+
+.widget-body {
+    background: white !important;
+    padding: 10px !important;
+    height: 150px !important;
+}
+
+.widget-footer {
+    background: #ccc !important;
+    line-height: 30px !important;
+    padding-left: 10px !important;
+}
