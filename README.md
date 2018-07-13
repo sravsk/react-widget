@@ -20,8 +20,8 @@
 ## Usage
 
 > Please add the following script tag along with EmbeddableWidget.mount(); method to the footer file of your website 
-<script src="http://localhost:3001/widget.js"></script>
-<script>
+> <script src="http://localhost:3001/widget.js"></script>
+> <script>
 	EmbeddableWidget.mount();
 </script>
 
