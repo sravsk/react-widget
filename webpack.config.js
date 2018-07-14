@@ -1,9 +1,11 @@
-var path = require('path');
-var SRC_DIR = path.join(__dirname, '/client/src');
-var DIST_DIR = path.join(__dirname, '/client/dist');
+const path = require('path');
+const webpack = require('webpack');
+const MinifyPlugin = require("babel-minify-webpack-plugin");
+const SRC_DIR = path.join(__dirname, '/client/src');
+const DIST_DIR = path.join(__dirname, '/client/dist');
 
 module.exports = {
-  mode: 'production',
+  mode: 'development',
   //entry: `${SRC_DIR}/index.js`,
   entry: './client/src/outputs/Embeddable-Widget.js',
   output: {
@@ -15,6 +17,9 @@ module.exports = {
     libraryExport: 'default',
     libraryTarget: 'window',
   },
+  plugins: [
+    new MinifyPlugin()
+  ],
   serve: {
     content: DIST_DIR
   },
@@ -25,7 +30,7 @@ module.exports = {
         include: SRC_DIR,
         loader: 'babel-loader',
         query: {
-          presets: ['react', 'es2015'],
+          presets: [["es2015", { "modules": false }], "react"],
           plugins: ['transform-class-properties']
         }
       },
