@@ -6,3 +6,6 @@ bower_components/
 
 package-lock.json
 .DS_Store
+
+# webpack stats 
+compilation-stats.json
