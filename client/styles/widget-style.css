@@ -4,6 +4,7 @@
   right: 10px !important;
   z-index: 9999 !important;
   width: 376px!important;
+  height : auto !important;
 }
 
 .widget-dialog {
@@ -93,7 +94,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.knowhow-widget .anticon { 
+.knowhow-widget .anticon-book { 
   position : fixed;
   bottom: 20px !important;
   right: 10px !important;
@@ -107,13 +108,17 @@
     content: "\E637";
 }
 
+.knowhow-widget .anticon-file-text:before {
+  content: "\E698";
+}
+
 .knowhow-widget .widget-header-close {
     left: 60%;
     position: relative;
     cursor : pointer;
 }
 
-.knowhow-widget .company-title {
+.knowhow-widget .company-title, .knowhow-widget .body-categories {
     padding: 10px;
     font: normal normal 100% "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-style: normal;
@@ -131,4 +136,8 @@
     box-shadow: 0 4px 15px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.1), inset 0 2px 0 0 rgba(34, 101, 130, 0.5);
     min-height: 100%;
     margin: 10px 20px;
+}
+
+.knowhow-categories {
+    padding: 4px;
 }

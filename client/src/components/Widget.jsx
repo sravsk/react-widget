@@ -77,8 +77,10 @@ class Widget extends React.Component {
 		const renderCategories = this.state.categories.map(category => {
 			return (
 				<div className="knowhow-categories" key={category.id}>
-				<div>{category.name}</div>
-				<div>{category.description}</div>
+				<Icon 
+					type="file-text" 
+					style={{ fontSize: 28, borderRadius: '50%', color: '#777', verticalAlign: 'middle'}} 
+					/>{category.name}
 				</div>);
 		});
 		const renderCompanyDetails = this.state.companyDetails.map(company => {
@@ -101,7 +103,7 @@ class Widget extends React.Component {
 					<div className="company-title">{renderCompanyDetails} Knowledge base</div>
 					</Row>
 					<Row className="widget-body">
-					<span className="body-title">Advice and anssers from {renderCompanyDetails}</span>
+					<span className="body-title">Advice and Answers from {renderCompanyDetails}</span>
 					<Col className="body-categories">{renderCategories}</Col>
 					</Row>
 					<Row className="widget-footer">
