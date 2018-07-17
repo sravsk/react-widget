@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row, Col, Button, Icon } from 'antd';
 import { Transition } from 'react-transition-group';
+import axios from 'axios';
 import 'antd/dist/antd.css';
 import '../../styles/widget-style.css'
 
@@ -9,8 +10,19 @@ class Widget extends React.Component {
 		super(props);
 		this.state = {
 			open : false,
-			showDockedWidget : true
+			showDockedWidget : true,
+			categories : []
 		}
+	}
+
+// until CORS issue is fixed. 
+	componentDidMount(){
+		axios.get('http://localhost:3000/1/categoriesdata')
+          .then(result => {
+          	this.setState({
+              categories: result.data
+            });
+          })
 	}
 
 	handleToggleOpen = () => {
@@ -57,6 +69,13 @@ class Widget extends React.Component {
   				entered:  { opacity: 1 },
 			}
 		const body = this.renderBody();
+		const renderCategories = this.state.categories.map(category => {
+			return (
+				<div className="knowhow-categories" key={category.id}>
+				<div>{category.name}</div>
+				<div>{category.description}</div>
+				</div>);
+		});
 		return (
 			<div className="docked-widget">
 			<Transition 
@@ -73,7 +92,8 @@ class Widget extends React.Component {
 					<span className="company-title">CompanyX Knowledge base</span>
 					</Row>
 					<Row className="widget-body">
-					<Col className="body-title">Advice and anssers from CompanyX</Col>
+					<span className="body-title">Advice and anssers from CompanyX</span>
+					<Col className="body-categories">{renderCategories}</Col>
 					</Row>
 					<Row className="widget-footer">
 					Footer
