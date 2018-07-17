@@ -1,52 +1,51 @@
 .docked-widget {
-    position: fixed !important;
-    bottom: 20px !important;
-    right: 10px !important;
-    width: 200px !important;
-    z-index: 9999 !important;
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 10px !important;
+  z-index: 9999 !important;
 }
 
 .widget-dialog {
-    width: 200px !important;
-    border: 1px solid grey !important;
-    animation-duration: 0.2s !important;
-    animation-fill-mode: forwards !important;
+  border: 1px solid grey !important;
+  animation-duration: 0.2s !important;
+  animation-fill-mode: forwards !important;
 }
 
 .widget-title {
-    height: 30px !important;
-    line-height: 30px !important;
-    background: lightgrey !important;
-    color: grey !important;
-    padding-left: 10px !important;
-    display: flex !important;
-    align-items: stretch !important;
+  height: 30px !important;
+  line-height: 30px !important;
+  background: lightgrey !important;
+  color: grey !important;
+  padding-left: 10px !important;
+  display: flex !important;
+  align-items: stretch !important;
 }
 
 .widget-body {
-    background: white !important;
-    padding: 10px !important;
+  background: white !important;
+  padding: 10px !important;
 }
 
 .widget-footer {
-    background: #ccc !important;
-    line-height: 30px !important;
-    padding-left: 10px !important;
+  background: #ccc !important;
+  line-height: 30px !important;
+  padding-left: 10px !important;
 }
 
 .widget-entered {
-    box-shadow: 0 5px 40px rgba(0,0,0,.16)!important;
-    border-radius: 8px!important;
+  box-shadow: 0 5px 40px rgba(0,0,0,.16)!important;
+  border-radius: 8px!important;
 }
 
 .know-how {
-    margin: 0;
-    font-family: "Monospaced Number", "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    line-height: 1.5;
-    color: rgba(0, 0, 0, 0.65);
-    background-color: #fff;
+  margin: 0;
+  font-family: "Monospaced Number", "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.65);
+  background-color: #fff;
 }
+
 ::-moz-selection {
   background: #1890ff;
   color: #fff;
@@ -83,6 +82,12 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.anticon { 
+  position : fixed;
+  bottom: 20px !important;
+  right: 10px !important;
+ }
 .anticon:before {
   display: block;
   font-family: "anticon" !important;

@@ -49,7 +49,7 @@ class Widget extends React.Component {
 			return (
 				<Icon 
 					type="book" 
-					style={{ fontSize: 38, color: '#08c', borderRadius: '10px', backgroundColor: '#0088cc5e', padding: '15px'}} 
+					style={{ fontSize: 38, color: '#08c', borderRadius: '50%', backgroundColor: '#0088cc5e', padding: '15px'}} 
 					className="dock-button" 
 					onClick={this.handleToggleOpen} />
 				);
