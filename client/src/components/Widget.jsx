@@ -11,16 +11,21 @@ class Widget extends React.Component {
 		this.state = {
 			open : false,
 			showDockedWidget : true,
-			categories : []
+			categories : [],
+			companyDetails : []
 		}
 	}
 
 // until CORS issue is fixed. 
 	componentDidMount(){
-		axios.get(`http://localhost:3000/${this.props.companyId}/categoriesdata`)
-          .then(result => {
+		Promise.all([
+			axios.get(`http://localhost:3000/api/${this.props.companyId}`),
+			axios.get(`http://localhost:3000/${this.props.companyId}/categoriesdata`)
+			])
+          .then(([companyDetails, categoryDetails]) => {
           	this.setState({
-              categories: result.data
+          	  companyDetails : companyDetails.data,
+              categories: categoryDetails.data
             });
           })
 	}
@@ -76,6 +81,10 @@ class Widget extends React.Component {
 				<div>{category.description}</div>
 				</div>);
 		});
+		const renderCompanyDetails = this.state.companyDetails.map(company => {
+			return (
+				<span className="knowhow-company" key={company.id}>{company.name}</span>);
+		});
 		return (
 			<div className="docked-widget">
 			<Transition 
@@ -89,10 +98,10 @@ class Widget extends React.Component {
 					<Row className="widget-dialog">
 					<Col span={18} className="widget-title">Hi there! <span className="widget-header-close" onClick={this.handleToggleOpen}>X</span></Col>
 					
-					<span className="company-title">CompanyX Knowledge base</span>
+					<div className="company-title">{renderCompanyDetails} Knowledge base</div>
 					</Row>
 					<Row className="widget-body">
-					<span className="body-title">Advice and anssers from CompanyX</span>
+					<span className="body-title">Advice and anssers from {renderCompanyDetails}</span>
 					<Col className="body-categories">{renderCategories}</Col>
 					</Row>
 					<Row className="widget-footer">
