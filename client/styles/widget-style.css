@@ -3,22 +3,32 @@
   bottom: 20px !important;
   right: 10px !important;
   z-index: 9999 !important;
+  width: 376px!important;
+  height : auto !important;
 }
 
 .widget-dialog {
-  border: 1px solid grey !important;
   animation-duration: 0.2s !important;
   animation-fill-mode: forwards !important;
 }
 
 .widget-title {
-  height: 30px !important;
+  padding : 10px !important;
   line-height: 30px !important;
-  background: lightgrey !important;
-  color: grey !important;
-  padding-left: 10px !important;
+  background: #159adc !important;
+  color: #FFF !important;
   display: flex !important;
   align-items: stretch !important;
+  overflow-x: hidden;
+  overflow-y: auto;
+  word-wrap: break-word;
+  white-space: pre-line;
+  font: normal normal 100% "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 130%;
+  font-style: normal;
+  letter-spacing: normal;
+  font-weight: 400;
+  font-size : 30px;
 }
 
 .widget-body {
@@ -35,6 +45,7 @@
 .widget-entered {
   box-shadow: 0 5px 40px rgba(0,0,0,.16)!important;
   border-radius: 8px!important;
+  overflow: hidden!important;
 }
 
 .know-how {
@@ -46,23 +57,23 @@
   background-color: #fff;
 }
 
-::-moz-selection {
+.knowhow-widget ::-moz-selection {
   background: #1890ff;
   color: #fff;
 }
-::selection {
+.knowhow-widget ::selection {
   background: #1890ff;
   color: #fff;
 }
-.clearfix {
+.knowhow-widget.clearfix {
   zoom: 1;
 }
-.clearfix:before,
-.clearfix:after {
+.knowhow-widget .clearfix:before,
+.knowhow-widget .clearfix:after {
   content: "";
   display: table;
 }
-.clearfix:after {
+.knowhow-widget .clearfix:after {
   clear: both;
 }
 @font-face {
@@ -71,7 +82,7 @@
   /* IE9*/
   src: url('https://at.alicdn.com/t/font_148784_v4ggb6wrjmkotj4i.woff') format('woff'), /* chromeã€firefoxã€operaã€Safari, Android, iOS 4.2+*/ url('https://at.alicdn.com/t/font_148784_v4ggb6wrjmkotj4i.ttf') format('truetype'), /* iOS 4.1- */ url('https://at.alicdn.com/t/font_148784_v4ggb6wrjmkotj4i.svg#iconfont') format('svg');
 }
-.anticon {
+.knowhow-widget .anticon {
   display: inline-block;
   font-style: normal;
   vertical-align: baseline;
@@ -83,16 +94,50 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.anticon { 
+.knowhow-widget .anticon-book { 
   position : fixed;
   bottom: 20px !important;
   right: 10px !important;
  }
-.anticon:before {
+.knowhow-widget .anticon:before {
   display: block;
   font-family: "anticon" !important;
 }
 
-.anticon-book:before {
+.knowhow-widget .anticon-book:before {
     content: "\E637";
+}
+
+.knowhow-widget .anticon-file-text:before {
+  content: "\E698";
+}
+
+.knowhow-widget .widget-header-close {
+    left: 60%;
+    position: relative;
+    cursor : pointer;
+}
+
+.knowhow-widget .company-title, .knowhow-widget .body-categories {
+    padding: 10px;
+    font: normal normal 100% "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-style: normal;
+    letter-spacing: normal;
+    font-weight: 400;
+    margin-bottom: 17px;
+    background-color: #fff;
+    border-radius: 3px;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #000;
+    overflow: hidden;
+    position: relative;
+    -webkit-box-shadow: 0 4px 15px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.1), inset 0 2px 0 0 rgba(34, 101, 130, 0.5);
+    box-shadow: 0 4px 15px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.1), inset 0 2px 0 0 rgba(34, 101, 130, 0.5);
+    min-height: 100%;
+    margin: 10px 20px;
+}
+
+.knowhow-categories {
+    padding: 4px;
 }

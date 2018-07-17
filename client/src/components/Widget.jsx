@@ -11,16 +11,21 @@ class Widget extends React.Component {
 		this.state = {
 			open : false,
 			showDockedWidget : true,
-			categories : []
+			categories : [],
+			companyDetails : []
 		}
 	}
 
 // until CORS issue is fixed. 
 	componentDidMount(){
-		axios.get('http://localhost:3000/1/categoriesdata')
-          .then(result => {
+		Promise.all([
+			axios.get(`http://localhost:3000/api/${this.props.companyId}`),
+			axios.get(`http://localhost:3000/${this.props.companyId}/categoriesdata`)
+			])
+          .then(([companyDetails, categoryDetails]) => {
           	this.setState({
-              categories: result.data
+          	  companyDetails : companyDetails.data,
+              categories: categoryDetails.data
             });
           })
 	}
@@ -49,7 +54,7 @@ class Widget extends React.Component {
 			return (
 				<Icon 
 					type="book" 
-					style={{ fontSize: 38, color: '#08c', borderRadius: '50%', backgroundColor: '#0088cc5e', padding: '15px'}} 
+					style={{ fontSize: 38, color: '#FFF', borderRadius: '50%', backgroundColor: '#159adc', padding: '15px'}} 
 					className="dock-button" 
 					onClick={this.handleToggleOpen} />
 				);
@@ -72,9 +77,15 @@ class Widget extends React.Component {
 		const renderCategories = this.state.categories.map(category => {
 			return (
 				<div className="knowhow-categories" key={category.id}>
-				<div>{category.name}</div>
-				<div>{category.description}</div>
+				<Icon 
+					type="file-text" 
+					style={{ fontSize: 28, borderRadius: '50%', color: '#777', verticalAlign: 'middle'}} 
+					/>{category.name}
 				</div>);
+		});
+		const renderCompanyDetails = this.state.companyDetails.map(company => {
+			return (
+				<span className="knowhow-company" key={company.id}>{company.name}</span>);
 		});
 		return (
 			<div className="docked-widget">
@@ -87,12 +98,12 @@ class Widget extends React.Component {
 				 style={{...defaultStyle, ...transitionStyles[status]}} 
 				 className={`widget widget-${status}`}>
 					<Row className="widget-dialog">
-					<Col span={18} className="widget-title">Hi Sravanthi! </Col>
-					<Col span={6} className="widget-header-icon" onClick={this.handleToggleOpen}>X</Col>
-					<span className="company-title">CompanyX Knowledge base</span>
+					<Col span={18} className="widget-title">Hi there! <span className="widget-header-close" onClick={this.handleToggleOpen}>X</span></Col>
+					
+					<div className="company-title">{renderCompanyDetails} Knowledge base</div>
 					</Row>
 					<Row className="widget-body">
-					<span className="body-title">Advice and anssers from CompanyX</span>
+					<span className="body-title">Advice and Answers from {renderCompanyDetails}</span>
 					<Col className="body-categories">{renderCategories}</Col>
 					</Row>
 					<Row className="widget-footer">
