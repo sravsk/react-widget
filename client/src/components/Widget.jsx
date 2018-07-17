@@ -2,7 +2,7 @@ import React from 'react';
 import { Row, Col, Button, Icon } from 'antd';
 import { Transition } from 'react-transition-group';
 import axios from 'axios';
-import 'antd/dist/antd.css';
+//import 'antd/dist/antd.css';
 import '../../styles/widget-style.css'
 
 class Widget extends React.Component {
