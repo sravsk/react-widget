@@ -7,8 +7,8 @@ class EmbeddableWidget extends React.Component {
   static el;
 
   //es7 static method 
-  static mount() {
-    const component = <Widget />;
+  static mount(companyId) {
+    const component = <Widget companyId={companyId}/>;
 
     function doRender() {
       if (EmbeddableWidget.el) {

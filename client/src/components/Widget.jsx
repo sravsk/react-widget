@@ -17,7 +17,7 @@ class Widget extends React.Component {
 
 // until CORS issue is fixed. 
 	componentDidMount(){
-		axios.get('http://localhost:3000/1/categoriesdata')
+		axios.get(`http://localhost:3000/${this.props.companyId}/categoriesdata`)
           .then(result => {
           	this.setState({
               categories: result.data
@@ -49,7 +49,7 @@ class Widget extends React.Component {
 			return (
 				<Icon 
 					type="book" 
-					style={{ fontSize: 38, color: '#08c', borderRadius: '50%', backgroundColor: '#0088cc5e', padding: '15px'}} 
+					style={{ fontSize: 38, color: '#FFF', borderRadius: '50%', backgroundColor: '#159adc', padding: '15px'}} 
 					className="dock-button" 
 					onClick={this.handleToggleOpen} />
 				);
@@ -87,8 +87,8 @@ class Widget extends React.Component {
 				 style={{...defaultStyle, ...transitionStyles[status]}} 
 				 className={`widget widget-${status}`}>
 					<Row className="widget-dialog">
-					<Col span={18} className="widget-title">Hi Sravanthi! </Col>
-					<Col span={6} className="widget-header-icon" onClick={this.handleToggleOpen}>X</Col>
+					<Col span={18} className="widget-title">Hi there! <span className="widget-header-close" onClick={this.handleToggleOpen}>X</span></Col>
+					
 					<span className="company-title">CompanyX Knowledge base</span>
 					</Row>
 					<Row className="widget-body">
