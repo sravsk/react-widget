@@ -6,9 +6,9 @@ import register from 'ignore-styles';
 Enzyme.configure({ adapter: new Adapter() });
 
 //ignore css files
-register(['.css', '.sass', '.scss']);
+//register(['.css', '.sass', '.scss']);
 
 // Make Enzyme functions available in all test files without importing
-global.shallow = shallow;
-global.render = render;
-global.mount = mount;
+// global.shallow = shallow;
+// global.render = render;
+// global.mount = mount;

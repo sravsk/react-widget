@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Header from '../components/Widget.jsx';
+import Widget from '../components/Widget.jsx';
 
-describe('Widget', () => {
+describe('<Widget/>', () => {
   const mockFn = jest.fn();
   it('should be defined', () => {
     expect(Widget).toBeDefined();
@@ -14,3 +14,4 @@ describe('Widget', () => {
     expect(tree).toMatchSnapshot();
   });
 });
+

@@ -1,0 +1,203 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Widget/> should render correctly 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Widget />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <Transition
+          appear={false}
+          enter={true}
+          exit={true}
+          in={false}
+          mountOnEnter={false}
+          onEnter={[Function]}
+          onEntered={[Function]}
+          onEntering={[Function]}
+          onExit={[Function]}
+          onExited={[Function]}
+          onExiting={[Function]}
+          timeout={250}
+          unmountOnExit={false}
+        >
+          [Function]
+        </Transition>,
+        <Icon
+          className="dock-button"
+          onClick={[Function]}
+          style={
+            Object {
+              "backgroundColor": "#159adc",
+              "borderRadius": "50%",
+              "color": "#FFF",
+              "fontSize": 38,
+              "padding": "15px",
+            }
+          }
+          type="book"
+        />,
+      ],
+      "className": "docked-widget",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "appear": false,
+          "children": [Function],
+          "enter": true,
+          "exit": true,
+          "in": false,
+          "mountOnEnter": false,
+          "onEnter": [Function],
+          "onEntered": [Function],
+          "onEntering": [Function],
+          "onExit": [Function],
+          "onExited": [Function],
+          "onExiting": [Function],
+          "timeout": 250,
+          "unmountOnExit": false,
+        },
+        "ref": null,
+        "rendered": [Function],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "className": "dock-button",
+          "onClick": [Function],
+          "style": Object {
+            "backgroundColor": "#159adc",
+            "borderRadius": "50%",
+            "color": "#FFF",
+            "fontSize": 38,
+            "padding": "15px",
+          },
+          "type": "book",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <Transition
+            appear={false}
+            enter={true}
+            exit={true}
+            in={false}
+            mountOnEnter={false}
+            onEnter={[Function]}
+            onEntered={[Function]}
+            onEntering={[Function]}
+            onExit={[Function]}
+            onExited={[Function]}
+            onExiting={[Function]}
+            timeout={250}
+            unmountOnExit={false}
+          >
+            [Function]
+          </Transition>,
+          <Icon
+            className="dock-button"
+            onClick={[Function]}
+            style={
+              Object {
+                "backgroundColor": "#159adc",
+                "borderRadius": "50%",
+                "color": "#FFF",
+                "fontSize": 38,
+                "padding": "15px",
+              }
+            }
+            type="book"
+          />,
+        ],
+        "className": "docked-widget",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "appear": false,
+            "children": [Function],
+            "enter": true,
+            "exit": true,
+            "in": false,
+            "mountOnEnter": false,
+            "onEnter": [Function],
+            "onEntered": [Function],
+            "onEntering": [Function],
+            "onExit": [Function],
+            "onExited": [Function],
+            "onExiting": [Function],
+            "timeout": 250,
+            "unmountOnExit": false,
+          },
+          "ref": null,
+          "rendered": [Function],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "className": "dock-button",
+            "onClick": [Function],
+            "style": Object {
+              "backgroundColor": "#159adc",
+              "borderRadius": "50%",
+              "color": "#FFF",
+              "fontSize": 38,
+              "padding": "15px",
+            },
+            "type": "book",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

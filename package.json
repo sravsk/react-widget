@@ -5,15 +5,19 @@
   "main": "index.js",
   "scripts": {
     "test-jest": "jest client/src/",
-    "jest": "jest",
     "start": "webpack-serve --config ./webpack.config.js --port 3001",
     "dev-build": "webpack -d --watch"
   },
   "jest": {
-    "setupTestFrameworkScriptFile": "<rootDir>client/src/__tests__/jest.config.jsx",
+    "setupTestFrameworkScriptFile": "<rootDir>client/src/__tests__/setup/jest.config.jsx",
+    "testPathIgnorePatterns": ["<rootDir>/client/src/__tests__/setup/"],
     "transformIgnorePatterns": [
       "node_modules/(?!(react-native|my-project|redux-persist)/)"
-    ]
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/client/src/__mocks__/fileMock.js",
+      "\\.(css|less)$": "identity-obj-proxy"
+    }
   },
   "babel": {
     "presets": [
@@ -41,6 +45,7 @@
   "devDependencies": {
     "axios": "^0.18.0",
     "babel-core": "^6.26.3",
+    "babel-jest": "^23.4.0",
     "babel-loader": "^7.1.5",
     "babel-minify-webpack-plugin": "^0.3.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
@@ -52,8 +57,11 @@
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.4",
+    "identity-obj-proxy": "^3.0.0",
     "ignore-styles": "^5.0.1",
     "jest": "^23.4.1",
+    "jest-cli": "^23.4.1",
+    "react-test-renderer": "^16.4.1",
     "react-transition-group": "^2.4.0",
     "style-loader": "^0.21.0",
     "webpack": "^4.16.0",
