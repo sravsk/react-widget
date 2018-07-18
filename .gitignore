@@ -10,3 +10,4 @@ package-lock.json
 # webpack stats 
 compilation-stats.json
 resources 
+client/src/__tests__/__snapshots__
