@@ -9,3 +9,4 @@ package-lock.json
 
 # webpack stats 
 compilation-stats.json
+resources 
