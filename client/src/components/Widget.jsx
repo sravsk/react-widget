@@ -30,7 +30,6 @@ class Widget extends React.Component {
               categories: categoryDetails.data,
               articleDetails : articleDetails.data
             });
-           // console.log("articles", articles)
           })
 	}
 
@@ -117,9 +116,6 @@ class Widget extends React.Component {
 					</Row>
 					<Row className="widget-body">
 					<Col className="body-articles"><span class="knowhow-search-title">Featured Articles</span><ul className="articles-wrapper">{renderArticles}</ul></Col>
-					</Row>
-					<Row className="widget-footer">
-					Footer
 					</Row>
 				</div>
 				)}
