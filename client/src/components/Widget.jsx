@@ -2,6 +2,7 @@ import React from 'react';
 import { Row, Col, Button, Icon } from 'antd';
 import { Transition } from 'react-transition-group';
 import axios from 'axios';
+import Search from './Search.jsx'
 import '../../styles/widget-style.css'
 
 class Widget extends React.Component {
@@ -11,7 +12,8 @@ class Widget extends React.Component {
 			open : false,
 			showDockedWidget : true,
 			categories : [],
-			companyDetails : []
+			companyDetails : [],
+			articleDetails : []
 		}
 	}
 
@@ -19,12 +21,14 @@ class Widget extends React.Component {
 	componentDidMount(){
 		Promise.all([
 			axios.get(`http://localhost:3000/api/${this.props.companyId}`),
-			axios.get(`http://localhost:3000/${this.props.companyId}/categoriesdata`)
+			axios.get(`http://localhost:3000/${this.props.companyId}/categoriesdata`),
+			axios.get(`http://localhost:3000/${this.props.companyId}/categories/2/articlesdata`)
 			])
-          .then(([companyDetails, categoryDetails]) => {
+          .then(([companyDetails, categoryDetails, articleDetails]) => {
           	this.setState({
           	  companyDetails : companyDetails.data,
-              categories: categoryDetails.data
+              categories: categoryDetails.data,
+              articleDetails : articleDetails.data
             });
           })
 	}
@@ -86,6 +90,11 @@ class Widget extends React.Component {
 			return (
 				<span className="knowhow-company" key={company.id}>{company.name}</span>);
 		});
+		// Performance testing - rendering data inline vs child components 
+		const renderArticles = this.state.articleDetails.map(article => {
+			return (
+				<li className="knowhow-company" key={article.id}>{article.title}</li>);
+		});
 		return (
 			<div className="docked-widget">
 			<Transition 
@@ -98,14 +107,15 @@ class Widget extends React.Component {
 				 className={`widget widget-${status}`}>
 					<Row className="widget-dialog">
 					<Col span={18} className="widget-title"><div className="knowhow-maintitle">Welcome!</div><span className="widget-header-close" onClick={this.handleToggleOpen}>X</span>
-					<div className="widget-subtitle">How can we help ?</div></Col>
+					<div className="widget-subtitle">Checkout {renderCompanyDetails} Knowledge Base</div></Col>
+					<Search/>
 					<div className="company-title">{renderCompanyDetails} Knowledge base</div>
 					</Row>
 					<Row className="widget-body">
 					<Col className="body-categories">{renderCategories}</Col>
 					</Row>
-					<Row className="widget-footer">
-					Footer
+					<Row className="widget-body">
+					<Col className="body-articles"><span class="knowhow-search-title">Featured Articles</span><ul className="articles-wrapper">{renderArticles}</ul></Col>
 					</Row>
 				</div>
 				)}
