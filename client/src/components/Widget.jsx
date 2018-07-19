@@ -2,6 +2,7 @@ import React from 'react';
 import { Row, Col, Button, Icon } from 'antd';
 import { Transition } from 'react-transition-group';
 import axios from 'axios';
+import Search from './Search.jsx'
 import '../../styles/widget-style.css'
 
 class Widget extends React.Component {
@@ -98,7 +99,8 @@ class Widget extends React.Component {
 				 className={`widget widget-${status}`}>
 					<Row className="widget-dialog">
 					<Col span={18} className="widget-title"><div className="knowhow-maintitle">Welcome!</div><span className="widget-header-close" onClick={this.handleToggleOpen}>X</span>
-					<div className="widget-subtitle">How can we help ?</div></Col>
+					<div className="widget-subtitle">Checkout {renderCompanyDetails} Knowledge Base</div></Col>
+					<Search/>
 					<div className="company-title">{renderCompanyDetails} Knowledge base</div>
 					</Row>
 					<Row className="widget-body">
