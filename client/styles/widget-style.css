@@ -13,7 +13,7 @@
 }
 
 .widget-title {
-  padding : 10px !important;
+  padding : 10px 20px 20px 20px !important;
   line-height: 30px !important;
   background: #159adc !important;
   color: #FFF !important;
@@ -23,12 +23,19 @@
   overflow-y: auto;
   word-wrap: break-word;
   white-space: pre-line;
+  font-family: "Open Sans", sans-serif;
   font: normal normal 100% "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 130%;
   font-style: normal;
   letter-spacing: normal;
   font-weight: 400;
   font-size : 30px;
+}
+
+.widget-subtitle {
+  font-size: 12px;
+  position: absolute;
+  padding: 25px 0;
 }
 
 .widget-body {
@@ -116,6 +123,7 @@
     left: 60%;
     position: relative;
     cursor : pointer;
+    font-size : 20px;
 }
 
 .knowhow-widget .company-title, .knowhow-widget .body-categories {

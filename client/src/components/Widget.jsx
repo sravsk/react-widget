@@ -78,7 +78,7 @@ class Widget extends React.Component {
 				<div className="knowhow-categories" key={category.id}>
 				<Icon 
 					type="file-text" 
-					style={{ fontSize: 28, borderRadius: '50%', color: '#777', verticalAlign: 'middle'}} 
+					style={{ fontSize: 28, borderRadius: '50%', color: '#777', verticalAlign: 'middle', marginRight : '5px'}} 
 					/>{category.name}
 				</div>);
 		});
@@ -97,12 +97,11 @@ class Widget extends React.Component {
 				 style={{...defaultStyle, ...transitionStyles[status]}} 
 				 className={`widget widget-${status}`}>
 					<Row className="widget-dialog">
-					<Col span={18} className="widget-title">Hi there! <span className="widget-header-close" onClick={this.handleToggleOpen}>X</span></Col>
-					
+					<Col span={18} className="widget-title"><div className="knowhow-maintitle">Welcome!</div><span className="widget-header-close" onClick={this.handleToggleOpen}>X</span>
+					<div className="widget-subtitle">How can we help ?</div></Col>
 					<div className="company-title">{renderCompanyDetails} Knowledge base</div>
 					</Row>
 					<Row className="widget-body">
-					<span className="body-title">Advice and Answers from {renderCompanyDetails}</span>
 					<Col className="body-categories">{renderCategories}</Col>
 					</Row>
 					<Row className="widget-footer">
