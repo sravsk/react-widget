@@ -4,7 +4,7 @@
   "description": "react widget - library as a service",
   "main": "index.js",
   "scripts": {
-    "test-jest": "jest client/src/",
+    "test-jest": "jest client/src/ && exit 0",
     "start": "webpack-serve --config ./webpack.config.js --port 3001",
     "dev-build": "webpack -d --watch"
   },
