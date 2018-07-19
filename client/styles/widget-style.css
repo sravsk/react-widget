@@ -40,7 +40,7 @@
 
 .widget-body {
   background: white !important;
-  padding: 10px !important;
+  padding: 5px 0 !important;
 }
 
 .widget-footer {
@@ -127,7 +127,11 @@
     font-size : 20px;
 }
 
-.knowhow-widget .company-title, .knowhow-widget .body-categories, .knowhow-search-wrapper {
+.knowhow-widget .company-title {
+  display : none;
+}
+
+.knowhow-widget .company-title, .knowhow-widget .body-categories, .knowhow-search-wrapper, .knowhow-widget .body-articles {
     padding: 10px;
     font: normal normal 100% "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-style: normal;
@@ -141,8 +145,8 @@
     color: #000;
     overflow: hidden;
     position: relative;
-    -webkit-box-shadow: 0 4px 15px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.1), inset 0 2px 0 0 rgba(34, 101, 130, 0.5);
-    box-shadow: 0 4px 15px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.1), inset 0 2px 0 0 rgba(34, 101, 130, 0.5);
+    -webkit-box-shadow: 0 4px 15px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.1), inset 0 2px 0 0 #5a5e6147;
+    box-shadow: 0 4px 15px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.1), inset 0 2px 0 0 #5a5e6147;
     min-height: 100%;
     margin: 10px 20px;
 }
@@ -171,7 +175,7 @@
   line-height: 1.5;
   color: rgba(0, 0, 0, 0.65);
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -213,9 +217,6 @@
   padding-right: 30px;
   background-color: #ccc3;
   font-size: 12px;
-}
-.ant-input-affix-wrapper .ant-input {
-  min-height: 100%;
 }
 .ant-input-search-icon {
   color: rgba(0, 0, 0, 0.45);
@@ -282,10 +283,22 @@ span.knowhow-search-title {
   float: left;
   clear: left;
   padding: 10px 0;
+  color : #2185d0;
+  font-weight : 600;
 }
 
 span.ant-input-search.ant-input-affix-wrapper {
   float: left;
   clear: left;
+}
+
+.articles-wrapper {
+  display : inline-block;
+  margin-left: -40px;
+  margin-top: -2px;
+}
+
+li.knowhow-company {
+    list-style: none;
 }
 
