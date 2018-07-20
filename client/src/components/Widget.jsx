@@ -22,7 +22,7 @@ class Widget extends React.Component {
 		Promise.all([
 			axios.get(`http://localhost:3000/api/${this.props.companyId}`),
 			axios.get(`http://localhost:3000/${this.props.companyId}/categoriesdata`),
-			axios.get(`http://localhost:3000/${this.props.companyId}/categories/2/articlesdata`)
+			axios.get(`http://localhost:3000/${this.props.companyId}/articlesdata`)
 			])
           .then(([companyDetails, categoryDetails, articleDetails]) => {
           	this.setState({
