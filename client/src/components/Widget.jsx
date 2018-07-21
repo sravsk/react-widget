@@ -129,10 +129,10 @@ class Widget extends React.Component {
 
 		const renderCategoryArticles = this.state.articles.map(article => {
 			return (
-				<div className="knowhow-widget-article">
-				<div className="knowhow-widget-article-mainTitle" key={article.id} dangerouslySetInnerHTML={{__html: article.title}}></div>
-				<div className="knowhow-widget-article-mainDescription" key={article.id} dangerouslySetInnerHTML={{__html: article.description}}></div>
-				<div className="knowhow-widget-article-mainContent" key={article.id} dangerouslySetInnerHTML={{__html: article.content}}></div>
+				<div className="knowhow-widget-article" key={article.id}>
+				<div className="knowhow-widget-article-mainTitle" dangerouslySetInnerHTML={{__html: article.title}}></div>
+				<div className="knowhow-widget-article-mainDescription"  dangerouslySetInnerHTML={{__html: article.description}}></div>
+				<div className="knowhow-widget-article-mainContent"  dangerouslySetInnerHTML={{__html: article.content}}></div>
 				</div>
 				)
 		});

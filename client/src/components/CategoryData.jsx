@@ -27,12 +27,12 @@ class CategoryData extends React.Component {
     const Panel = Collapse.Panel;
     const renderCategoryArticles = this.state.articles.map(article => {
       return (
-        <li>
+        <li key={article.id}>
         <Icon 
           type="file-text" 
           style={{ fontSize: 22}} 
           className="dock-button" />
-        <div className="knowhow-article" key={article.id}>{article.title}</div>
+        <div className="knowhow-article">{article.title}</div>
         </li>
         )
     });
