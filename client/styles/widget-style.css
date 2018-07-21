@@ -134,7 +134,7 @@
   display : none;
 }
 
-.knowhow-widget .company-title, .knowhow-widget .body-categories, .knowhow-search-wrapper, .knowhow-widget .body-articles, .knowhow-showArticles, .knowhow-articles, .knowhow-renderArticles {
+.knowhow-widget .company-title, .knowhow-widget .body-categories, .knowhow-search-wrapper, .knowhow-widget .body-articles, .knowhow-showArticles, .knowhow-articles, .knowhow-renderArticles, .knowhow-widget-article {
     padding: 10px;
     font: normal normal 100% "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-style: normal;

@@ -123,7 +123,7 @@ class Widget extends React.Component {
 
 		const renderCategoryArticles = this.state.articles.map(article => {
 			return (
-				<div className="knowhow-article" key={article.id}>{article.content}</div>
+				<div className="knowhow-widget-article" key={article.id} dangerouslySetInnerHTML={{__html: article.content}}></div>
 				)
 		});
 		
