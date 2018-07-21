@@ -39,6 +39,12 @@ class Widget extends React.Component {
           })
 	}
 
+	handleBackButton = () => {
+		this.setState ({
+			renderArticles : 'knowhow-hideArticles'
+		})
+	}
+
    handleOpenArticle = (categoryId) => {
     axios.get(`http://localhost:3000/${this.props.companyId}/categories/${categoryId}/articlesdata`)
     .then(response => {
@@ -157,7 +163,8 @@ class Widget extends React.Component {
 					<Col span={6} className="widget-title-arrow">
 					<Icon 
 						type="arrow-left"
-						style={{ fontSize: 24}} />
+						style={{ fontSize: 24}}
+						onClick={this.handleBackButton} />
 					</Col>
 					<Col span={18} className="widget-title-articles"><div className="knowhow-maintitle">Knowledge Base!</div><span className="widget-header-close-articles" onClick={this.handleToggleOpen}>X</span>
 					</Col>
