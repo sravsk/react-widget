@@ -32,12 +32,12 @@ class CategoryData extends React.Component {
           type="file-text" 
           style={{ fontSize: 22}} 
           className="dock-button" />
-        <div className="knowhow-article">{article.title}</div>
+        <div className="knowhow-article" onClick={(categoryArticle) => this.props.handleOpenArticle(article.id)}>{article.title}</div>
         </li>
         )
     });
     return (
-     <div className="knowhow-categories" key={this.props.category.id} onClick={(categoryArticle) => this.props.handleOpenArticle(this.props.category.id)}>
+     <div className="knowhow-categories" key={this.props.category.id}>
      {renderCategoryArticles}
      </div>
      

@@ -45,8 +45,8 @@ class Widget extends React.Component {
 		})
 	}
 
-   handleOpenArticle = (categoryId) => {
-    axios.get(`http://localhost:3000/${this.props.companyId}/categories/${categoryId}/articlesdata`)
+   handleOpenArticle = (articleId) => {
+    axios.get(`http://localhost:3000/api/article/${articleId}`)
     .then(response => {
       const articles = response.data;
       this.setState({ 
@@ -124,7 +124,7 @@ class Widget extends React.Component {
 		// Performance testing - rendering data inline vs child components 
 		const renderArticles = this.state.articleDetails.map(article => {
 			return (
-				<li className="knowhow-company" key={article.id}>{article.title}</li>);
+				<li className="knowhow-company" key={article.id} handleOpenArticle={this.handleOpenArticle}>{article.title}</li>);
 		});
 
 		const renderCategoryArticles = this.state.articles.map(article => {
@@ -193,5 +193,3 @@ class Widget extends React.Component {
 	}
 }
 export default Widget;
-
-
