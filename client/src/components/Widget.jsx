@@ -1,9 +1,11 @@
 import React from 'react';
-import { Row, Col, Button, Icon } from 'antd';
+import { Row, Col, Button, Icon, Collapse } from 'antd';
 import { Transition } from 'react-transition-group';
 import axios from 'axios';
-import Search from './Search.jsx'
-import '../../styles/widget-style.css'
+import Search from './Search.jsx';
+import CategoryData from './CategoryData.jsx';
+import '../../styles/widget-style.css';
+
 
 class Widget extends React.Component {
 	constructor(props){
@@ -13,16 +15,19 @@ class Widget extends React.Component {
 			showDockedWidget : true,
 			categories : [],
 			companyDetails : [],
-			articleDetails : []
+			articleDetails : [],
+			categoryId : [],
+			articles : [],
+			renderArticles : 'knowhow-hideArticles'
+			
 		}
 	}
 
-// until CORS issue is fixed. 
 	componentDidMount(){
 		Promise.all([
 			axios.get(`http://localhost:3000/api/${this.props.companyId}`),
 			axios.get(`http://localhost:3000/${this.props.companyId}/categoriesdata`),
-			axios.get(`http://localhost:3000/${this.props.companyId}/categories/2/articlesdata`)
+			axios.get(`http://localhost:3000/${this.props.companyId}/articlesdata`)
 			])
           .then(([companyDetails, categoryDetails, articleDetails]) => {
           	this.setState({
@@ -32,6 +37,24 @@ class Widget extends React.Component {
             });
           })
 	}
+
+   handleOpenArticle = (categoryId) => {
+    axios.get(`http://localhost:3000/${this.props.companyId}/categories/${categoryId}/articlesdata`)
+    .then(response => {
+      const articles = response.data;
+      this.setState({ 
+        articles,
+        renderArticles : 'knowhow-showArticles'
+      })
+    })
+  }
+
+  handlePanelChange = (activeKey) => {
+  	this.setState = {
+  		activeKey 
+  	}
+  	
+  }
 
 	handleToggleOpen = () => {
 		this.setState((prev) => {
@@ -46,6 +69,7 @@ class Widget extends React.Component {
 		})
 	}
 
+	
 	handleWidgetExit = () => {
 		this.setState({
 			showDockedWidget: true
@@ -66,6 +90,7 @@ class Widget extends React.Component {
 	}
 
 	render() {
+		const Panel = Collapse.Panel;
 		const duration = 250;
 		const defaultStyle = {
   				transition: `opacity ${duration}ms ease-in-out`,
@@ -77,14 +102,13 @@ class Widget extends React.Component {
   				entered:  { opacity: 1 },
 			}
 		const body = this.renderBody();
+
 		const renderCategories = this.state.categories.map(category => {
 			return (
-				<div className="knowhow-categories" key={category.id}>
-				<Icon 
-					type="file-text" 
-					style={{ fontSize: 28, borderRadius: '50%', color: '#777', verticalAlign: 'middle', marginRight : '5px'}} 
-					/>{category.name}
-				</div>);
+				<Panel header={category.name} key={category.id} showArrow={false}>
+				<CategoryData key={category.id} category={category} companyId={this.props.companyId} handleOpenArticle={this.handleOpenArticle}/> 
+				</Panel>
+				);
 		});
 		const renderCompanyDetails = this.state.companyDetails.map(company => {
 			return (
@@ -95,6 +119,13 @@ class Widget extends React.Component {
 			return (
 				<li className="knowhow-company" key={article.id}>{article.title}</li>);
 		});
+
+		const renderCategoryArticles = this.state.articles.map(article => {
+			return (
+				<div className="knowhow-article" key={article.id}>{article.content}</div>
+				)
+		});
+		
 		return (
 			<div className="docked-widget">
 			<Transition 
@@ -112,10 +143,34 @@ class Widget extends React.Component {
 					<div className="company-title">{renderCompanyDetails} Knowledge base</div>
 					</Row>
 					<Row className="widget-body">
-					<Col className="body-categories">{renderCategories}</Col>
+					<Col className="body-categories">
+					<span className="knowhow-search-title">Collections</span><br/>
+					<Collapse bordered={false}>
+						{renderCategories}
+					</Collapse>
+					</Col>
 					</Row>
 					<Row className="widget-body">
-					<Col className="body-articles"><span class="knowhow-search-title">Featured Articles</span><ul className="articles-wrapper">{renderArticles}</ul></Col>
+					<div className={this.state.renderArticles}>
+					<Row className="widget-dialog">
+					<Col span={6} className="widget-title-arrow">
+					<Icon 
+						type="arrow-left"
+						style={{ fontSize: 24}} />
+					</Col>
+					<Col span={18} className="widget-title"><div className="knowhow-maintitle">Help Center!</div><span className="widget-header-close" onClick={this.handleToggleOpen}>X</span>
+					</Col>
+					</Row>
+					{renderCategoryArticles}
+					</div>
+					</Row>
+					<Row className="widget-body-featured">
+					<Col className="body-articles"><span className="knowhow-search-title">Featured Articles</span><br/><ul className="articles-wrapper">{renderArticles}</ul></Col>
+					</Row>
+					<Row className="widget-body-renderArticles">
+					<Col className="body-CategoryArticles">
+					
+					</Col>
 					</Row>
 				</div>
 				)}
@@ -126,3 +181,5 @@ class Widget extends React.Component {
 	}
 }
 export default Widget;
+
+
