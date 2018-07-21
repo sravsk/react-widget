@@ -129,7 +129,11 @@ class Widget extends React.Component {
 
 		const renderCategoryArticles = this.state.articles.map(article => {
 			return (
-				<div className="knowhow-widget-article" key={article.id} dangerouslySetInnerHTML={{__html: article.content}}></div>
+				<div className="knowhow-widget-article">
+				<div className="knowhow-widget-article-mainTitle" key={article.id} dangerouslySetInnerHTML={{__html: article.title}}></div>
+				<div className="knowhow-widget-article-mainDescription" key={article.id} dangerouslySetInnerHTML={{__html: article.description}}></div>
+				<div className="knowhow-widget-article-mainContent" key={article.id} dangerouslySetInnerHTML={{__html: article.content}}></div>
+				</div>
 				)
 		});
 		
@@ -163,7 +167,7 @@ class Widget extends React.Component {
 					<Col span={6} className="widget-title-arrow">
 					<Icon 
 						type="arrow-left"
-						style={{ fontSize: 24}}
+						style={{ fontSize: 24, 'marginTop': '10px'}}
 						onClick={this.handleBackButton} />
 					</Col>
 					<Col span={18} className="widget-title-articles"><div className="knowhow-maintitle">Knowledge Base!</div><span className="widget-header-close-articles" onClick={this.handleToggleOpen}>X</span>
