@@ -5,6 +5,7 @@ import axios from 'axios';
 import Search from './Search.jsx';
 import CategoryData from './CategoryData.jsx';
 import '../../styles/widget-style.css';
+//import 'antd/dist/antd.css';
 
 
 class Widget extends React.Component {
@@ -144,7 +145,7 @@ class Widget extends React.Component {
 					</Row>
 					<Row className="widget-body">
 					<Col className="body-categories">
-					<span className="knowhow-search-title">Collections</span><br/>
+					<span className="knowhow-search-title">Categories</span><br/>
 					<Collapse bordered={false}>
 						{renderCategories}
 					</Collapse>
@@ -152,13 +153,13 @@ class Widget extends React.Component {
 					</Row>
 					<Row className="widget-body">
 					<div className={this.state.renderArticles}>
-					<Row className="widget-dialog">
+					<Row className="widget-dialog widget-title-articles">
 					<Col span={6} className="widget-title-arrow">
 					<Icon 
 						type="arrow-left"
 						style={{ fontSize: 24}} />
 					</Col>
-					<Col span={18} className="widget-title"><div className="knowhow-maintitle">Help Center!</div><span className="widget-header-close" onClick={this.handleToggleOpen}>X</span>
+					<Col span={18} className="widget-title-articles"><div className="knowhow-maintitle">Knowledge Base!</div><span className="widget-header-close-articles" onClick={this.handleToggleOpen}>X</span>
 					</Col>
 					</Row>
 					{renderCategoryArticles}

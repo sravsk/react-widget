@@ -454,3 +454,35 @@ li.knowhow-company {
     display: none;
 }
 
+.widget-title-articles {
+  line-height: 30px !important;
+  background: #159adc !important;
+  color: #FFF !important;
+  display: flex !important;
+  align-items: stretch !important;
+  overflow-x: hidden;
+  overflow-y: auto;
+  word-wrap: break-word;
+  white-space: pre-line;
+  font-family: "Open Sans", sans-serif;
+  font: normal normal 100% "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 130%;
+  font-style: normal;
+  letter-spacing: normal;
+  font-weight: 400;
+  font-size: 30px;
+  padding: 5px;
+  width: 100%;
+}
+
+.anticon-arrow-left:before {
+    content: "\E61C";
+}
+
+span.widget-header-close-articles {
+    left: 20%;
+    position: relative;
+    cursor: pointer;
+    font-size: 20px;
+}
+
