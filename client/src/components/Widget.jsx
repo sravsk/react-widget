@@ -5,6 +5,7 @@ import axios from 'axios';
 import Search from './Search.jsx';
 import CategoryData from './CategoryData.jsx';
 import '../../styles/widget-style.css';
+//import 'antd/dist/antd.css';
 
 
 class Widget extends React.Component {
@@ -38,8 +39,14 @@ class Widget extends React.Component {
           })
 	}
 
-   handleOpenArticle = (categoryId) => {
-    axios.get(`http://localhost:3000/${this.props.companyId}/categories/${categoryId}/articlesdata`)
+	handleBackButton = () => {
+		this.setState ({
+			renderArticles : 'knowhow-hideArticles'
+		})
+	}
+
+   handleOpenArticle = (articleId) => {
+    axios.get(`http://localhost:3000/api/article/${articleId}`)
     .then(response => {
       const articles = response.data;
       this.setState({ 
@@ -117,12 +124,16 @@ class Widget extends React.Component {
 		// Performance testing - rendering data inline vs child components 
 		const renderArticles = this.state.articleDetails.map(article => {
 			return (
-				<li className="knowhow-company" key={article.id}>{article.title}</li>);
+				<li className="knowhow-company" key={article.id} handleOpenArticle={this.handleOpenArticle}>{article.title}</li>);
 		});
 
 		const renderCategoryArticles = this.state.articles.map(article => {
 			return (
-				<div className="knowhow-article" key={article.id}>{article.content}</div>
+				<div className="knowhow-widget-article" key={article.id}>
+				<div className="knowhow-widget-article-mainTitle" dangerouslySetInnerHTML={{__html: article.title}}></div>
+				<div className="knowhow-widget-article-mainDescription"  dangerouslySetInnerHTML={{__html: article.description}}></div>
+				<div className="knowhow-widget-article-mainContent"  dangerouslySetInnerHTML={{__html: article.content}}></div>
+				</div>
 				)
 		});
 		
@@ -144,7 +155,7 @@ class Widget extends React.Component {
 					</Row>
 					<Row className="widget-body">
 					<Col className="body-categories">
-					<span className="knowhow-search-title">Collections</span><br/>
+					<span className="knowhow-search-title">Categories</span><br/>
 					<Collapse bordered={false}>
 						{renderCategories}
 					</Collapse>
@@ -152,13 +163,14 @@ class Widget extends React.Component {
 					</Row>
 					<Row className="widget-body">
 					<div className={this.state.renderArticles}>
-					<Row className="widget-dialog">
+					<Row className="widget-dialog widget-title-articles">
 					<Col span={6} className="widget-title-arrow">
 					<Icon 
 						type="arrow-left"
-						style={{ fontSize: 24}} />
+						style={{ fontSize: 24, 'marginTop': '10px'}}
+						onClick={this.handleBackButton} />
 					</Col>
-					<Col span={18} className="widget-title"><div className="knowhow-maintitle">Help Center!</div><span className="widget-header-close" onClick={this.handleToggleOpen}>X</span>
+					<Col span={18} className="widget-title-articles"><div className="knowhow-maintitle">Knowledge Base!</div><span className="widget-header-close-articles" onClick={this.handleToggleOpen}>X</span>
 					</Col>
 					</Row>
 					{renderCategoryArticles}
@@ -181,5 +193,3 @@ class Widget extends React.Component {
 	}
 }
 export default Widget;
-
-

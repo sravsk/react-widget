@@ -27,17 +27,17 @@ class CategoryData extends React.Component {
     const Panel = Collapse.Panel;
     const renderCategoryArticles = this.state.articles.map(article => {
       return (
-        <li>
+        <li key={article.id}>
         <Icon 
           type="file-text" 
           style={{ fontSize: 22}} 
           className="dock-button" />
-        <div className="knowhow-article" key={article.id}>{article.title}</div>
+        <div className="knowhow-article" onClick={(categoryArticle) => this.props.handleOpenArticle(article.id)}>{article.title}</div>
         </li>
         )
     });
     return (
-     <div className="knowhow-categories" key={this.props.category.id} onClick={(categoryArticle) => this.props.handleOpenArticle(this.props.category.id)}>
+     <div className="knowhow-categories" key={this.props.category.id}>
      {renderCategoryArticles}
      </div>
      
