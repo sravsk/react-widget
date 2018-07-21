@@ -10,7 +10,7 @@ const Search = () => {
 		<Search 
 			placeholder="Search Knowledge base..."
 			onSearch={value => console.log(value)}
-			style={{ width : 200}} />
+			style={{ width : 200, marginTop : '10px'}} />
 		</div>
 		)
 }
