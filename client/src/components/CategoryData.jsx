@@ -11,8 +11,10 @@ class CategoryData extends React.Component {
   }
 
 
+
   componentDidMount() {
-    axios.get(`http://localhost:3000/${this.props.companyId}/categories/${this.props.category.id}/articlesdata`)
+   var hashids = new Hashids('knowhow-api', 16);
+    axios.get(`http://localhost:3000/api/${this.props.companyId}/categories/${hashids.encode(this.props.category.id)}/articlesdata`)
     .then(response => {
       const articles = response.data;
       this.setState({ 
