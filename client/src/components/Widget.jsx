@@ -27,8 +27,8 @@ class Widget extends React.Component {
 	componentDidMount(){
 		Promise.all([
 			axios.get(`http://localhost:3000/api/${this.props.companyId}`),
-			axios.get(`http://localhost:3000/${this.props.companyId}/categoriesdata`),
-			axios.get(`http://localhost:3000/${this.props.companyId}/articlesdata`)
+			axios.get(`http://localhost:3000/api/${this.props.companyId}/categoriesdata`),
+			axios.get(`http://localhost:3000/api/${this.props.companyId}/articlesdata`)
 			])
           .then(([companyDetails, categoryDetails, articleDetails]) => {
           	this.setState({
@@ -46,7 +46,8 @@ class Widget extends React.Component {
 	}
 
    handleOpenArticle = (articleId) => {
-    axios.get(`http://localhost:3000/api/article/${articleId}`)
+   	var hashids = new Hashids('knowhow-api', 16);
+    axios.get(`http://localhost:3000/api/${this.props.companyId}/article/${hashids.encode(articleId)}`)
     .then(response => {
       const articles = response.data;
       this.setState({ 
@@ -122,7 +123,7 @@ class Widget extends React.Component {
 				<span className="knowhow-company" key={company.id}>{company.name}</span>);
 		});
 		// Performance testing - rendering data inline vs child components 
-		const renderArticles = this.state.articleDetails.map(article => {
+		const showArticles = this.state.articleDetails.map(article => {
 			return (
 				<li className="knowhow-company" key={article.id} handleOpenArticle={this.handleOpenArticle}>{article.title}</li>);
 		});
@@ -177,7 +178,7 @@ class Widget extends React.Component {
 					</div>
 					</Row>
 					<Row className="widget-body-featured">
-					<Col className="body-articles"><span className="knowhow-search-title">Featured Articles</span><br/><ul className="articles-wrapper">{renderArticles}</ul></Col>
+					<Col className="body-articles"><span className="knowhow-search-title">Featured Articles</span><br/><ul className="articles-wrapper">{showArticles}</ul></Col>
 					</Row>
 					<Row className="widget-body-renderArticles">
 					<Col className="body-CategoryArticles">
