@@ -105,7 +105,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.knowhow-widget .anticon-book { 
+.knowhow-widget .anticon-book {
   position : fixed;
   bottom: 20px !important;
   right: 10px !important;
@@ -307,7 +307,7 @@ li.knowhow-company {
   line-height: 24px;
 }
 
-/* articles take over */ 
+/* articles take over */
 .knowhow-showArticles {
   box-shadow: 0 5px 40px rgba(0,0,0,.16)!important;
   border-radius: 8px!important;
@@ -327,7 +327,7 @@ li.knowhow-company {
   min-height: 410px;
 }
 
-/* categories collapse */ 
+/* categories collapse */
 .ant-collapse {
   font-family: "Monospaced Number", "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
@@ -525,5 +525,15 @@ span.widget-header-close-articles {
   font-family: "Monospaced Number", "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   color: #000000a6;
+}
+
+.article-title {
+  list-style: none;
+  font-family: "Monospaced Number", "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin-left: 1em;
+}
+
+.knowhow-search-wrapper {
+/*  overflow: scroll;*/
 }
 
