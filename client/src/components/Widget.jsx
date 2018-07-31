@@ -20,7 +20,7 @@ class Widget extends React.Component {
 			categoryId : [],
 			articles : [],
 			renderArticles : 'knowhow-hideArticles'
-			
+
 		}
 	}
 
@@ -50,7 +50,7 @@ class Widget extends React.Component {
     axios.get(`http://localhost:3000/api/${this.props.companyId}/article/${hashids.encode(articleId)}`)
     .then(response => {
       const articles = response.data;
-      this.setState({ 
+      this.setState({
         articles,
         renderArticles : 'knowhow-showArticles'
       })
@@ -59,9 +59,9 @@ class Widget extends React.Component {
 
   handlePanelChange = (activeKey) => {
   	this.setState = {
-  		activeKey 
+  		activeKey
   	}
-  	
+
   }
 
 	handleToggleOpen = () => {
@@ -77,7 +77,7 @@ class Widget extends React.Component {
 		})
 	}
 
-	
+
 	handleWidgetExit = () => {
 		this.setState({
 			showDockedWidget: true
@@ -87,10 +87,10 @@ class Widget extends React.Component {
 	renderBody = () => {
 		if (this.state.showDockedWidget) {
 			return (
-				<Icon 
-					type="book" 
-					style={{ fontSize: 38, color: '#FFF', borderRadius: '50%', backgroundColor: '#159adc', padding: '15px'}} 
-					className="dock-button" 
+				<Icon
+					type="book"
+					style={{ fontSize: 38, color: '#FFF', borderRadius: '50%', backgroundColor: '#159adc', padding: '15px'}}
+					className="dock-button"
 					onClick={this.handleToggleOpen} />
 				);
 		}
@@ -114,7 +114,7 @@ class Widget extends React.Component {
 		const renderCategories = this.state.categories.map(category => {
 			return (
 				<Panel header={category.name} key={category.id} showArrow={false}>
-				<CategoryData key={category.id} category={category} companyId={this.props.companyId} handleOpenArticle={this.handleOpenArticle}/> 
+				<CategoryData key={category.id} category={category} companyId={this.props.companyId} handleOpenArticle={this.handleOpenArticle}/>
 				</Panel>
 				);
 		});
@@ -122,7 +122,7 @@ class Widget extends React.Component {
 			return (
 				<span className="knowhow-company" key={company.id}>{company.name}</span>);
 		});
-		// Performance testing - rendering data inline vs child components 
+		// Performance testing - rendering data inline vs child components
 		const showArticles = this.state.articleDetails.map(article => {
 			return (
 				<li className="knowhow-company" key={article.id} handleOpenArticle={this.handleOpenArticle}>{article.title}</li>);
@@ -137,22 +137,24 @@ class Widget extends React.Component {
 				</div>
 				)
 		});
-		
+
 		return (
 			<div className="docked-widget">
-			<Transition 
-				in={this.state.open} 
+			<Transition
+				in={this.state.open}
 				timeout={duration}
 				onExited={this.handleWidgetExit}>
 				 {status => (
-				 <div 
-				 style={{...defaultStyle, ...transitionStyles[status]}} 
+				 <div
+				 style={{...defaultStyle, ...transitionStyles[status]}}
 				 className={`widget widget-${status}`}>
 					<Row className="widget-dialog">
 					<Col span={18} className="widget-title"><div className="knowhow-maintitle">Welcome!</div><span className="widget-header-close" onClick={this.handleToggleOpen}>X</span>
+
 					<div className="widget-subtitle">Checkout {renderCompanyDetails} Knowledge Base</div></Col>
-					<Search/>
+					<Search companyId={this.props.companyId} handleOpenArticle={this.handleOpenArticle.bind(this)}/>
 					<div className="company-title">{renderCompanyDetails} Knowledge base</div>
+
 					</Row>
 					<Row className="widget-body">
 					<Col className="body-categories">
@@ -166,7 +168,7 @@ class Widget extends React.Component {
 					<div className={this.state.renderArticles}>
 					<Row className="widget-dialog widget-title-articles">
 					<Col span={6} className="widget-title-arrow">
-					<Icon 
+					<Icon
 						type="arrow-left"
 						style={{ fontSize: 24, 'marginTop': '10px'}}
 						onClick={this.handleBackButton} />
@@ -182,7 +184,7 @@ class Widget extends React.Component {
 					</Row>
 					<Row className="widget-body-renderArticles">
 					<Col className="body-CategoryArticles">
-					
+
 					</Col>
 					</Row>
 				</div>
