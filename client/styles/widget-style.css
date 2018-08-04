@@ -134,7 +134,7 @@
   display : none;
 }
 
-.knowhow-widget .company-title, .knowhow-widget .body-categories, .knowhow-search-wrapper, .knowhow-widget .body-articles, .knowhow-showArticles, .knowhow-articles, .knowhow-renderArticles, .knowhow-widget-article {
+.knowhow-widget .company-title, .knowhow-widget .body-categories, .knowhow-search-wrapper, .knowhow-widget .body-articles,  .knowhow-articles, .knowhow-renderArticles, .knowhow-widget-article {
     padding: 10px;
     font: normal normal 100% "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-style: normal;
@@ -314,7 +314,7 @@ li.knowhow-company {
   background: #fff;
   position: fixed !important;
   bottom: 10px !important;
-  right: 10px !important;
+  right: 20px !important;
   z-index: 9999999 !important;
   width: 376px!important;
   height : auto !important;
@@ -323,8 +323,9 @@ li.knowhow-company {
   font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
   font-size: 14px;
   line-height: 1.4285em;
-  margin-right: 10px;
+  margin-right: 0px;
   min-height: 410px;
+  overflow-y: scroll;
 }
 
 /* categories collapse */
@@ -470,7 +471,7 @@ li.knowhow-company {
   font-style: normal;
   letter-spacing: normal;
   font-weight: 400;
-  padding: 5px;
+  padding: 5px 15px;
   width: 100%;
 }
 
@@ -504,7 +505,6 @@ span.widget-header-close-articles {
     font-size: 14px;
     text-overflow: ellipsis;
     overflow: hidden;
-    white-space: nowrap;
     color: #00000087;
     display: inline-block;
     -webkit-box-flex: 1;
