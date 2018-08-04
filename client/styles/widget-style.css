@@ -537,3 +537,32 @@ span.widget-header-close-articles {
 /*  overflow: scroll;*/
 }
 
+a {
+  cursor: pointer;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.pagination li{
+  list-style-type: none;
+  display: inline;
+  margin: 0 0.5vw;
+}
+
+.pagination {
+  text-align: center;
+  padding: 0.5vh;
+  border: 0.04em solid rgba(173, 173, 173, 0.5);
+  border-radius: 0.5em;
+}
+
+.pagination ul {
+   margin: auto;
+}
+
+.table {
+  display: table;
+  margin: 0 auto;
+}
