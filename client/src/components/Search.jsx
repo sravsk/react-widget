@@ -1,15 +1,25 @@
 import React from 'react';
 import { Input, Row, Col } from 'antd'
 import axios from 'axios'
+import Pagination from './Pagination.jsx';
 
 class Search extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			articles: []
-		};
+			articles: [],
+      pageOfItems: []
+    };
+    this.onChangePage = this.onChangePage.bind(this);
 		this.handleSearch = this.handleSearch.bind(this);
 	}
+
+	onChangePage(pageOfItems) {
+    // update state with new page of items
+    this.setState({
+      pageOfItems: pageOfItems
+    });
+  }
 
 	handleSearch(value) {
 		let hashedCompanyId = this.props.companyId;
@@ -23,7 +33,7 @@ class Search extends React.Component {
 	}
 
 	render () {
-		let renderSearchResults = this.state.articles.map(item => {
+		let renderSearchResults = this.state.pageOfItems.map(item => {
 			let article = item._source;
 			return (
 				<li className="article-title" key={article.id} onClick={() => this.props.handleOpenArticle(article.id)}>{article.title}</li>
@@ -42,6 +52,9 @@ class Search extends React.Component {
 				<br/><br/><br/>
 				<Row>
 					{renderSearchResults}
+				</Row>
+				<Row>
+					<Pagination items={this.state.articles} onChangePage={this.onChangePage} />
 				</Row>
 			</div>
 			)
