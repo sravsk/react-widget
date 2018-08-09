@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input, Row, Col } from 'antd'
+import { Input, Row, Col, Icon } from 'antd'
 import axios from 'axios'
 import Pagination from './Pagination.jsx';
 
@@ -36,7 +36,14 @@ class Search extends React.Component {
 		let renderSearchResults = this.state.pageOfItems.map(item => {
 			let article = item._source;
 			return (
-				<li className="article-title" key={article.id} onClick={() => this.props.handleOpenArticle(article.id)}>{article.title}</li>
+				<li className="article-title" key={article.id}>
+					<Icon
+						type='file-text'
+						style={{ fontSize: 22 }}
+						className='dock-button' />
+					<div className='knowhow-article' onClick={() => this.props.handleOpenArticle(article.id)}>{article.title}</div>
+				</li>
+
 			);
 		});
 		const Search = Input.Search;
