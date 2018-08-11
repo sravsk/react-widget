@@ -576,10 +576,21 @@ a:hover {
 }
 
 .knowhow-widget .anticon-wechat.dock-button {
-    color: #777;
-    padding : 5px 20px;
+    color: #FFF;
+    padding : 0 0.3em;
 }
 
 .knowhow-chat-wrapper-show{
   display : block;
+}
+
+.knowhow-chat-newConversation {
+    background-color: #159adc;
+    display: inline-block;
+    color: #fff;
+    padding: 0.5em;
+    border-radius: 40px;
+    -webkit-box-shadow: 0 4px 15px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.1), inset 0 2px 0 0 #5a5e6147;
+    box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0), 0 1px 2px 0 rgba(0,0,0,.1), inset 0 2px 0 0 #f6f7f900;
+    margin: 2% 0;
 }
