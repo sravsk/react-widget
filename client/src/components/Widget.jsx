@@ -42,7 +42,6 @@ class Widget extends React.Component {
 	}
 
 	handleBackButton = () => {
-		console.log("clicking")
 		this.setState ({
 			renderArticles : 'knowhow-hideArticles',
 			renderChat : 'knowhow-chat-wrapper'
