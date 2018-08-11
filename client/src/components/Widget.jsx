@@ -4,6 +4,7 @@ import { Transition } from 'react-transition-group';
 import axios from 'axios';
 import Search from './Search.jsx';
 import CategoryData from './CategoryData.jsx';
+import Chat from './Chat.jsx';
 import '../../styles/widget-style.css';
 //import 'antd/dist/antd.css';
 
@@ -19,7 +20,8 @@ class Widget extends React.Component {
 			articleDetails : [],
 			categoryId : [],
 			articles : [],
-			renderArticles : 'knowhow-hideArticles'
+			renderArticles : 'knowhow-hideArticles',
+			renderChat : 'knowhow-chat-wrapper'
 
 		}
 	}
@@ -125,7 +127,7 @@ class Widget extends React.Component {
 		// Performance testing - rendering data inline vs child components
 		const showArticles = this.state.articleDetails.map(article => {
 			return (
-				<li className="knowhow-company" key={article.id} handleOpenArticle={this.handleOpenArticle}>{article.title}</li>);
+				<li className="knowhow-company" key={article.id}>{article.title}</li>);
 		});
 
 		const renderCategoryArticles = this.state.articles.map(article => {
@@ -152,6 +154,7 @@ class Widget extends React.Component {
 					<Col span={18} className="widget-title"><div className="knowhow-maintitle">Welcome!</div><span className="widget-header-close" onClick={this.handleToggleOpen}>X</span>
 
 					<div className="widget-subtitle">Checkout {renderCompanyDetails} Knowledge Base</div></Col>
+					<Chat renderChat={this.state.renderChat}/>
 					<Search companyId={this.props.companyId} handleOpenArticle={this.handleOpenArticle.bind(this)}/>
 					<div className="company-title">{renderCompanyDetails} Knowledge base</div>
 

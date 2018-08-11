@@ -134,7 +134,7 @@
   display : none;
 }
 
-.knowhow-widget .company-title, .knowhow-widget .body-categories, .knowhow-search-wrapper, .knowhow-widget .body-articles,  .knowhow-articles, .knowhow-renderArticles, .knowhow-widget-article {
+.knowhow-widget .company-title, .knowhow-widget .body-categories, .knowhow-search-wrapper, .knowhow-widget .body-articles,  .knowhow-articles, .knowhow-renderArticles, .knowhow-widget-article, .knowhow-chat-box {
     padding: 10px;
     font: normal normal 100% "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-style: normal;
@@ -283,7 +283,7 @@
   height : 90px;*/
 }
 
-span.knowhow-search-title {
+span.knowhow-search-title, span.knowhow-chat-title {
   padding: 10px 0;
   color : #2185d0;
   font-weight : 600;
@@ -565,4 +565,21 @@ a:hover {
 .table {
   display: table;
   margin: 0 auto;
+}
+
+.knowhow-chat-wrapper { 
+  display : none;
+ }
+
+.knowhow-widget .anticon-wechat:before {
+  content: "\E9C4";
+}
+
+.knowhow-widget .anticon-wechat.dock-button {
+    color: #777;
+    padding : 5px 20px;
+}
+
+.knowhow-chat-wrapper-show{
+  display : block;
 }

@@ -52,3 +52,4 @@ class EmbeddableWidget extends React.Component {
 }
 
 export default EmbeddableWidget;
+
