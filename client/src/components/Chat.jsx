@@ -1,34 +1,28 @@
 import React from 'react';
-import { Icon} from 'antd';
+import { Icon, Row, Col} from 'antd';
 
 class Chat extends React.Component{
 	constructor(props){
 		super(props)
-		this.state = {
-			renderChat : props.renderChat
-		}
-	}
-
-	openChatService = () => {
-		this.setState({
-			renderChat : 'knowhow-chat-wrapper-show'
-		})
 	}
 
 	render(){
 		return(
 			<div>
-				<div className="knowhow-chat-box">
-					<span className="knowhow-chat-title">Start a conversation</span><br/>
-					<div className="knowhow-chat-newConversation" onClick={this.openChatService}>
-					<Icon 
-	          type="wechat" 
-	          style={{ fontSize: 22}} 
-	          className="dock-button"/>
-					<span>New Conversation</span>
-	      	</div>
+				<div className="knowhow-chat-header">
+						<Row className="widget-dialog widget-title-articles">
+						<Col span={6} className="widget-title-arrow">
+						<Icon
+							type="arrow-left"
+							style={{ fontSize: 24, 'marginTop': '10px'}}
+							onClick={() => this.props.handleBackButton()}/>
+						</Col>
+						<Col span={18} className="widget-title-articles">
+							<div className="knowhow-maintitle">Chat with us today!</div>
+							<span className="widget-header-close-articles" onClick={() => this.props.handleToggleOpen()}>X</span>
+						</Col>
+						</Row>
 				</div>
-				<div className={this.state.renderChat}></div>
 			</div>
 			)
 	}

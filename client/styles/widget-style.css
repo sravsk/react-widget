@@ -307,8 +307,8 @@ li.knowhow-company {
   line-height: 24px;
 }
 
-/* articles take over */
-.knowhow-showArticles {
+/* articles take over, cha take over  */
+.knowhow-showArticles , .knowhow-chat-wrapper-show{
   box-shadow: 0 5px 40px rgba(0,0,0,.16)!important;
   border-radius: 8px!important;
   background: #fff;
@@ -480,7 +480,7 @@ li.knowhow-company {
 }
 
 span.widget-header-close-articles {
-    left: 35%;
+    left: 28%;
     position: relative;
     cursor: pointer;
     font-size: 20px;

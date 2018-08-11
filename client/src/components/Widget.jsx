@@ -42,8 +42,10 @@ class Widget extends React.Component {
 	}
 
 	handleBackButton = () => {
+		console.log("clicking")
 		this.setState ({
-			renderArticles : 'knowhow-hideArticles'
+			renderArticles : 'knowhow-hideArticles',
+			renderChat : 'knowhow-chat-wrapper'
 		})
 	}
 
@@ -83,6 +85,12 @@ class Widget extends React.Component {
 	handleWidgetExit = () => {
 		this.setState({
 			showDockedWidget: true
+		})
+	}
+
+	openChatService = () => {
+		this.setState({
+			renderChat : 'knowhow-chat-wrapper-show'
 		})
 	}
 
@@ -154,7 +162,19 @@ class Widget extends React.Component {
 					<Col span={18} className="widget-title"><div className="knowhow-maintitle">Welcome!</div><span className="widget-header-close" onClick={this.handleToggleOpen}>X</span>
 
 					<div className="widget-subtitle">Checkout {renderCompanyDetails} Knowledge Base</div></Col>
-					<Chat renderChat={this.state.renderChat}/>
+					<div className="knowhow-chat-box">
+					 <span className="knowhow-chat-title">Start a conversation</span><br/>
+					 <div className="knowhow-chat-newConversation" onClick={this.openChatService}>
+					 <Icon 
+			          type="wechat" 
+			          style={{ fontSize: 22}} 
+			          className="dock-button"/>
+					 <span>New Conversation</span>
+	      			 </div>
+					</div>
+					<div className={this.state.renderChat}>
+					<Chat renderChat={this.state.renderChat} handleBackButton={this.handleBackButton} handleToggleOpen={this.handleToggleOpen}/>
+					</div>
 					<Search companyId={this.props.companyId} handleOpenArticle={this.handleOpenArticle.bind(this)}/>
 					<div className="company-title">{renderCompanyDetails} Knowledge base</div>
 
