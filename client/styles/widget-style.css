@@ -134,7 +134,7 @@
   display : none;
 }
 
-.knowhow-widget .company-title, .knowhow-widget .body-categories, .knowhow-search-wrapper, .knowhow-widget .body-articles,  .knowhow-articles, .knowhow-renderArticles, .knowhow-widget-article {
+.knowhow-widget .company-title, .knowhow-widget .body-categories, .knowhow-search-wrapper, .knowhow-widget .body-articles,  .knowhow-articles, .knowhow-renderArticles, .knowhow-widget-article, .knowhow-chat-box {
     padding: 10px;
     font: normal normal 100% "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-style: normal;
@@ -283,7 +283,7 @@
   height : 90px;*/
 }
 
-span.knowhow-search-title {
+span.knowhow-search-title, span.knowhow-chat-title {
   padding: 10px 0;
   color : #2185d0;
   font-weight : 600;
@@ -307,8 +307,8 @@ li.knowhow-company {
   line-height: 24px;
 }
 
-/* articles take over */
-.knowhow-showArticles {
+/* articles take over, cha take over  */
+.knowhow-showArticles , .knowhow-chat-wrapper-show{
   box-shadow: 0 5px 40px rgba(0,0,0,.16)!important;
   border-radius: 8px!important;
   background: #fff;
@@ -480,7 +480,7 @@ li.knowhow-company {
 }
 
 span.widget-header-close-articles {
-    left: 35%;
+    left: 28%;
     position: relative;
     cursor: pointer;
     font-size: 20px;
@@ -565,4 +565,32 @@ a:hover {
 .table {
   display: table;
   margin: 0 auto;
+}
+
+.knowhow-chat-wrapper { 
+  display : none;
+ }
+
+.knowhow-widget .anticon-wechat:before {
+  content: "\E9C4";
+}
+
+.knowhow-widget .anticon-wechat.dock-button {
+    color: #FFF;
+    padding : 0 0.3em;
+}
+
+.knowhow-chat-wrapper-show{
+  display : block;
+}
+
+.knowhow-chat-newConversation {
+    background-color: #159adc;
+    display: inline-block;
+    color: #fff;
+    padding: 0.5em;
+    border-radius: 40px;
+    -webkit-box-shadow: 0 4px 15px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.1), inset 0 2px 0 0 #5a5e6147;
+    box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0), 0 1px 2px 0 rgba(0,0,0,.1), inset 0 2px 0 0 #f6f7f900;
+    margin: 2% 0;
 }
