@@ -27,14 +27,13 @@ class Search extends React.Component {
 		axios.get(`http://localhost:3000/api/${hashedCompanyId}/search?term=${value}`)
 			.then(results => {
 				this.setState({
-					articles: results.data.hits
+					articles: results.data
 				})
 			})
 	}
 
 	render () {
-		let renderSearchResults = this.state.pageOfItems.map(item => {
-			let article = item._source;
+		let renderSearchResults = this.state.pageOfItems.map(article => {
 			return (
 				<li className="article-title" key={article.id}>
 					<Icon
