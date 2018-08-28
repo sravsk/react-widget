@@ -24,7 +24,7 @@ class Search extends React.Component {
 	handleSearch(value) {
 		let hashedCompanyId = this.props.companyId;
 		// send request to CMS
-		axios.get(`http://localhost:3000/api/${hashedCompanyId}/search?term=${value}`)
+		axios.get(`http://ec2-54-153-34-178.us-west-1.compute.amazonaws.com:3000/api/${hashedCompanyId}/search?term=${value}`)
 			.then(results => {
 				this.setState({
 					articles: results.data

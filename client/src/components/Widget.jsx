@@ -28,9 +28,9 @@ class Widget extends React.Component {
 
 	componentDidMount(){
 		Promise.all([
-			axios.get(`http://localhost:3000/api/${this.props.companyId}`),
-			axios.get(`http://localhost:3000/api/${this.props.companyId}/categoriesdata`),
-			axios.get(`http://localhost:3000/api/${this.props.companyId}/articlesdata`)
+			axios.get(`http://ec2-54-153-34-178.us-west-1.compute.amazonaws.com:3000/api/${this.props.companyId}`),
+			axios.get(`http://ec2-54-153-34-178.us-west-1.compute.amazonaws.com:3000/api/${this.props.companyId}/categoriesdata`),
+			axios.get(`http://ec2-54-153-34-178.us-west-1.compute.amazonaws.com:3000/api/${this.props.companyId}/articlesdata`)
 			])
           .then(([companyDetails, categoryDetails, articleDetails]) => {
           	this.setState({
@@ -50,7 +50,7 @@ class Widget extends React.Component {
 
    handleOpenArticle = (articleId) => {
    	var hashids = new Hashids('knowhow-api', 16);
-    axios.get(`http://localhost:3000/api/${this.props.companyId}/article/${hashids.encode(articleId)}`)
+    axios.get(`http://ec2-54-153-34-178.us-west-1.compute.amazonaws.com:3000/api/${this.props.companyId}/article/${hashids.encode(articleId)}`)
     .then(response => {
       const articles = response.data;
       this.setState({
