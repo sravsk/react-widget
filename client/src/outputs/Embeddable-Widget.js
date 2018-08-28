@@ -6,10 +6,26 @@ class EmbeddableWidget extends React.Component {
   //static property
   static el;
 
-  //es7 static method 
+  //es7 static method
   static mount(companyId) {
-    //console.log("what is hashedcompanyId here", hashedcompanyId)
-    const component = <Widget companyId={companyId}/>;
+      //Add google analytics
+      var script = document.createElement('script');
+      script.setAttribute('async', true);
+      script.setAttribute('src', "https://www.googletagmanager.com/gtag/js?id=UA-124513548-1");
+      var head = document.getElementsByTagName('head')[0];
+      head.appendChild(script);
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      // gtag('config', 'UA-124513548-1');
+      gtag('config', 'UA-124513548-1', {
+        'page_title': 'homepage',
+        'page_location': document.location.href,
+        'page_path': '/'
+      });
+      gtag('userId', companyId)
+
+    const component = <Widget companyId={companyId} gtag={gtag}/>;
 
     function doRender() {
       if (EmbeddableWidget.el) {
@@ -32,6 +48,7 @@ class EmbeddableWidget extends React.Component {
 
     //check if load event is about to fire.
     if (document.readyState === 'complete') {
+      console.log('calling doRender')
       doRender();
     } else {
       window.addEventListener('load', () => {

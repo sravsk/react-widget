@@ -6,6 +6,7 @@ import Search from './Search.jsx';
 import CategoryData from './CategoryData.jsx';
 import Chat from './Chat.jsx';
 import '../../styles/widget-style.css';
+// import ReactGA from 'react-ga';
 //import 'antd/dist/antd.css';
 
 
@@ -22,11 +23,28 @@ class Widget extends React.Component {
 			articles : [],
 			renderArticles : 'knowhow-hideArticles',
 			renderChat : 'knowhow-chat-wrapper'
-
 		}
+		this.user;
 	}
 
 	componentDidMount(){
+		let scripts = document.getElementsByTagName('script');
+    this.user = scripts.item(scripts.length - 1).innerHTML.match(/name\s\:\s["'](\w+)["']/)[1];
+    console.log('this.user: ', this.user)
+    // document.getElementsByTagName('script').forEach(script => console.log(script))
+    // console.log('script: ', script)
+		// ReactGA.initialize('UA-124513548-1', {
+		// 	debug: true,
+		//   gaOptions: {
+		//     userId: 456,
+		//     companyId: 'companyId',
+		//     specialSauce: 'what?'
+		//   }
+		// });
+		// ReactGA.set({ customDimension: 'example cd' });
+		// ReactGA.ga('send', 'pageview', {'dimension1': 'magicId'});
+		// ReactGA.ga('send', 'pageview', {'dimension2': 'dimension2Id'});
+		// ReactGA.pageview(window.location.pathname + window.location.search);
 		Promise.all([
 			axios.get(`http://localhost:3000/api/${this.props.companyId}`),
 			axios.get(`http://localhost:3000/api/${this.props.companyId}/categoriesdata`),
@@ -68,6 +86,9 @@ class Widget extends React.Component {
   }
 
 	handleToggleOpen = () => {
+		let user = typeof this.user === 'string' ? 0 : this.user;
+		console.log('user: ', user)
+		// ReactGA.pageview(window.location.pathname + window.location.search);
 		this.setState((prev) => {
 			let { showDockedWidget } = prev;
 			if (!prev.open) {
@@ -76,6 +97,15 @@ class Widget extends React.Component {
 			return {
 				showDockedWidget,
 				open: !prev.open
+			}
+		}, () => {
+				if(this.state.open) {
+					console.log('user inside: ', user)
+				this.props.gtag('event', 'Open Widget', {
+				  'event_category': this.props.companyId,
+				  'event_label': 'open',
+				  'value': user
+				});
 			}
 		})
 	}
@@ -164,9 +194,9 @@ class Widget extends React.Component {
 					<div className="knowhow-chat-box">
 					 <span className="knowhow-chat-title">Start a conversation</span><br/>
 					 <div className="knowhow-chat-newConversation" onClick={this.openChatService}>
-					 <Icon 
-			          type="wechat" 
-			          style={{ fontSize: 22}} 
+					 <Icon
+			          type="wechat"
+			          style={{ fontSize: 22}}
 			          className="dock-button"/>
 					 <span>New Conversation</span>
 	      			 </div>

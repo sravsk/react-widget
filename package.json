@@ -42,7 +42,8 @@
     "antd": "^3.6.6",
     "babel-preset-airbnb": "^2.5.1",
     "react": "^16.4.1",
-    "react-dom": "^16.4.1"
+    "react-dom": "^16.4.1",
+    "react-ga": "^2.5.3"
   },
   "devDependencies": {
     "axios": "^0.18.0",
