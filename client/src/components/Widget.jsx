@@ -6,9 +6,6 @@ import Search from './Search.jsx';
 import CategoryData from './CategoryData.jsx';
 import Chat from './Chat.jsx';
 import '../../styles/widget-style.css';
-// import ReactGA from 'react-ga';
-//import 'antd/dist/antd.css';
-
 
 class Widget extends React.Component {
 	constructor(props){
@@ -24,49 +21,48 @@ class Widget extends React.Component {
 			renderArticles : 'knowhow-hideArticles',
 			renderChat : 'knowhow-chat-wrapper'
 		}
-		this.user;
+		this.poll = this.poll.bind(this);
 	}
 
-	componentDidMount(){
-		let scripts = document.getElementsByTagName('script');
-    this.user = scripts.item(scripts.length - 1).innerHTML.match(/name\s\:\s["'](\w+)["']/)[1];
-    console.log('this.user: ', this.user)
-    // document.getElementsByTagName('script').forEach(script => console.log(script))
-    // console.log('script: ', script)
-		// ReactGA.initialize('UA-124513548-1', {
-		// 	debug: true,
-		//   gaOptions: {
-		//     userId: 456,
-		//     companyId: 'companyId',
-		//     specialSauce: 'what?'
-		//   }
-		// });
-		// ReactGA.set({ customDimension: 'example cd' });
-		// ReactGA.ga('send', 'pageview', {'dimension1': 'magicId'});
-		// ReactGA.ga('send', 'pageview', {'dimension2': 'dimension2Id'});
-		// ReactGA.pageview(window.location.pathname + window.location.search);
+	componentDidMount() {
 		Promise.all([
 			axios.get(`http://localhost:3000/api/${this.props.companyId}`),
 			axios.get(`http://localhost:3000/api/${this.props.companyId}/categoriesdata`),
 			axios.get(`http://localhost:3000/api/${this.props.companyId}/articlesdata`)
 			])
-          .then(([companyDetails, categoryDetails, articleDetails]) => {
-          	this.setState({
-          	  companyDetails : companyDetails.data,
-              categories: categoryDetails.data,
-              articleDetails : articleDetails.data
-            });
-          })
+    .then(([companyDetails, categoryDetails, articleDetails]) => {
+    	this.setState({
+    	  companyDetails : companyDetails.data,
+        categories: categoryDetails.data,
+        articleDetails : articleDetails.data
+      });
+    })
+    .then(() => {
+			if (window.performance) {
+			  var timeSincePageLoad = Math.round(performance.now());
+			  this.props.gtag('event', 'timing_complete', {
+			    'name': 'load',
+			    'value': timeSincePageLoad,
+			    'event_category': 'JS Dependencies'
+			  });
+			}
+    })
 	}
 
 	handleBackButton = () => {
 		this.setState ({
 			renderArticles : 'knowhow-hideArticles',
 			renderChat : 'knowhow-chat-wrapper'
-		})
+		});
 	}
 
-   handleOpenArticle = (articleId) => {
+  handleOpenArticle = (articleId) => {
+  	this.props.gtag('event', 'view_item', {
+  		'event_label': this.state.categoryId,
+  		'companyId': this.props.companyId,
+  		'categoryId': this.state.categoryId,
+		  'articleId': articleId.toString()
+		});
    	var hashids = new Hashids('knowhow-api', 16);
     axios.get(`http://localhost:3000/api/${this.props.companyId}/article/${hashids.encode(articleId)}`)
     .then(response => {
@@ -82,13 +78,9 @@ class Widget extends React.Component {
   	this.setState = {
   		activeKey
   	}
-
   }
 
 	handleToggleOpen = () => {
-		let user = typeof this.user === 'string' ? 0 : this.user;
-		console.log('user: ', user)
-		// ReactGA.pageview(window.location.pathname + window.location.search);
 		this.setState((prev) => {
 			let { showDockedWidget } = prev;
 			if (!prev.open) {
@@ -100,16 +92,19 @@ class Widget extends React.Component {
 			}
 		}, () => {
 				if(this.state.open) {
-					console.log('user inside: ', user)
-				this.props.gtag('event', 'Open Widget', {
-				  'event_category': this.props.companyId,
-				  'event_label': 'open',
-				  'value': user
+				this.props.gtag('event', 'screen_view', {
+				  'companyId': this.props.companyId
 				});
 			}
 		})
 	}
 
+	openCategory = (e) => {
+		this.setState({categoryId: e})
+		this.props.gtag('event', 'view_item_list', {
+		  'categoryId': e.toString()
+		});
+	}
 
 	handleWidgetExit = () => {
 		this.setState({
@@ -121,6 +116,11 @@ class Widget extends React.Component {
 		this.setState({
 			renderChat : 'knowhow-chat-wrapper-show'
 		})
+	}
+
+	poll = (e) => {
+		console.log('e.target inside poll: ', e.target.innerHTML)
+		// this.props.gtag
 	}
 
 	renderBody = () => {
@@ -169,10 +169,13 @@ class Widget extends React.Component {
 
 		const renderCategoryArticles = this.state.articles.map(article => {
 			return (
-				<div className="knowhow-widget-article" key={article.id}>
-				<div className="knowhow-widget-article-mainTitle" dangerouslySetInnerHTML={{__html: article.title}}></div>
-				<div className="knowhow-widget-article-mainDescription"  dangerouslySetInnerHTML={{__html: article.description}}></div>
-				<div className="knowhow-widget-article-mainContent"  dangerouslySetInnerHTML={{__html: article.content}}></div>
+				<div id="article" className="knowhow-widget-article" key={article.id}>
+					<div className="knowhow-widget-article-mainTitle" dangerouslySetInnerHTML={{__html: article.title}}></div>
+					<div className="knowhow-widget-article-mainDescription"  dangerouslySetInnerHTML={{__html: article.description}}></div>
+					<div className="knowhow-widget-article-mainContent"  dangerouslySetInnerHTML={{__html: article.content}}></div>
+					<div>
+					Helpful? <button onClick={this.poll}>Yes</button><button onClick={this.poll}>No</button>
+					</div>
 				</div>
 				)
 		});
@@ -211,7 +214,7 @@ class Widget extends React.Component {
 					<Row className="widget-body">
 					<Col className="body-categories">
 					<span className="knowhow-search-title">Categories</span><br/>
-					<Collapse bordered={false}>
+					<Collapse accordion bordered={false} onChange={this.openCategory}>
 						{renderCategories}
 					</Collapse>
 					</Col>

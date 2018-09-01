@@ -8,22 +8,26 @@ class EmbeddableWidget extends React.Component {
 
   //es7 static method
   static mount(companyId) {
-      //Add google analytics
-      var script = document.createElement('script');
-      script.setAttribute('async', true);
-      script.setAttribute('src', "https://www.googletagmanager.com/gtag/js?id=UA-124513548-1");
-      var head = document.getElementsByTagName('head')[0];
-      head.appendChild(script);
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      // gtag('config', 'UA-124513548-1');
-      gtag('config', 'UA-124513548-1', {
-        'page_title': 'homepage',
-        'page_location': document.location.href,
-        'page_path': '/'
-      });
-      gtag('userId', companyId)
+    //Add google analytics
+    let head = document.getElementsByTagName('head')[0];
+    let script2 = document.createElement('script');
+    script2.setAttribute('async', true);
+    script2.setAttribute('defer', true);
+    script2.setAttribute('src', "https://www.googletagmanager.com/gtag/js?id=UA-124513548-1");
+    head.appendChild(script2);
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-124513548-1', {
+      'custom_map': {
+        'dimension1': 'companyId',
+        'dimension2': 'articleId',
+        'dimension3': 'categoryId',
+      },
+      'page_title': 'homepage',
+      'page_location': document.location.href,
+      'page_path': '/'
+    });
 
     const component = <Widget companyId={companyId} gtag={gtag}/>;
 
@@ -49,9 +53,11 @@ class EmbeddableWidget extends React.Component {
     //check if load event is about to fire.
     if (document.readyState === 'complete') {
       console.log('calling doRender')
+      // gapi.load('auth2', start);
       doRender();
     } else {
       window.addEventListener('load', () => {
+        // gapi.loadLib('auth2', start);
         doRender();
       });
     }
