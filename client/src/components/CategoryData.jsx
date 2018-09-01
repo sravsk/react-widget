@@ -10,18 +10,15 @@ class CategoryData extends React.Component {
     }
   }
 
-
-
   componentDidMount() {
-   var hashids = new Hashids('knowhow-api', 16);
-    axios.get(`http://ec2-54-153-34-178.us-west-1.compute.amazonaws.com:3000/api/${this.props.companyId}/categories/${hashids.encode(this.props.category.id)}/articlesdata`)
-    .then(response => {
-      const articles = response.data;
-      this.setState({ 
-        articles,
-        renderArticles : 'knowhow-renderArticles'
+    axios.get(`http://ec2-54-153-34-178.us-west-1.compute.amazonaws.com:3000/api/${this.props.companyId}/categories/${this.props.category.id}/articlesdata`)
+      .then(response => {
+        const articles = response.data;
+        this.setState({ 
+          articles,
+          renderArticles : 'knowhow-renderArticles'
+        })
       })
-    })
   }
 
 
