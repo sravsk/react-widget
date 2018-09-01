@@ -12,6 +12,7 @@ class CategoryData extends React.Component {
 
   componentDidMount() {
     axios.get(`http://ec2-54-153-34-178.us-west-1.compute.amazonaws.com:3000/api/${this.props.companyId}/categories/${this.props.category.id}/articlesdata`)
+    // axios.get(`http://localhost:3000/api/${this.props.companyId}/categories/${this.props.category.id}/articlesdata`)
     .then(response => {
       const articles = response.data;
       this.setState({
