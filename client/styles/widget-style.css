@@ -564,7 +564,7 @@ a:hover {
   margin: 0 auto;
 }
 
-.knowhow-chat-wrapper { 
+.knowhow-chat-wrapper {
   display : none;
  }
 
@@ -590,4 +590,33 @@ a:hover {
     -webkit-box-shadow: 0 4px 15px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.1), inset 0 2px 0 0 #5a5e6147;
     box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0), 0 1px 2px 0 rgba(0,0,0,.1), inset 0 2px 0 0 #f6f7f900;
     margin: 2% 0;
+}
+
+.feedback {
+  text-align: center;
+    padding: 10px;
+    font: normal normal 100% "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-style: normal;
+    letter-spacing: normal;
+    font-weight: 400;
+    margin-bottom: 17px;
+    background-color: #fff;
+    border-radius: 3px;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #000;
+    overflow: hidden;
+    position: relative;
+    -webkit-box-shadow: 0 4px 15px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.1), inset 0 2px 0 0 #5a5e6147;
+    box-shadow: 0 4px 15px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.1), inset 0 2px 0 0 #5a5e6147;
+    min-height: 100%;
+    margin: 10px 20px 25px 20px;
+}
+
+.feedback button {
+  margin: 7px;
+}
+
+li {
+  list-style-type: none;
 }

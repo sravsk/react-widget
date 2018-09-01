@@ -6,8 +6,6 @@ import Search from './Search.jsx';
 import CategoryData from './CategoryData.jsx';
 import Chat from './Chat.jsx';
 import '../../styles/widget-style.css';
-//import 'antd/dist/antd.css';
-
 
 class Widget extends React.Component {
 	constructor(props){
@@ -22,33 +20,49 @@ class Widget extends React.Component {
 			articles : [],
 			renderArticles : 'knowhow-hideArticles',
 			renderChat : 'knowhow-chat-wrapper'
-
 		}
+		this.poll = this.poll.bind(this);
 	}
 
-	componentDidMount(){
+	componentDidMount() {
 		Promise.all([
 			axios.get(`http://ec2-54-153-34-178.us-west-1.compute.amazonaws.com:3000/api/${this.props.companyId}`),
 			axios.get(`http://ec2-54-153-34-178.us-west-1.compute.amazonaws.com:3000/api/${this.props.companyId}/categoriesdata`),
 			axios.get(`http://ec2-54-153-34-178.us-west-1.compute.amazonaws.com:3000/api/${this.props.companyId}/articlesdata`)
 			])
-          .then(([companyDetails, categoryDetails, articleDetails]) => {
-          	this.setState({
-          	  companyDetails : companyDetails.data,
-              categories: categoryDetails.data,
-              articleDetails : articleDetails.data
-            });
-          })
+    .then(([companyDetails, categoryDetails, articleDetails]) => {
+    	this.setState({
+    	  companyDetails : companyDetails.data,
+        categories: categoryDetails.data,
+        articleDetails : articleDetails.data
+      });
+    })
+    .then(() => {
+			if (window.performance) {
+			  var timeSincePageLoad = Math.round(performance.now());
+			  this.props.gtag('event', 'timing_complete', {
+			    'name': 'load',
+			    'value': timeSincePageLoad,
+			    'event_category': 'JS Dependencies'
+			  });
+			}
+    })
 	}
 
 	handleBackButton = () => {
 		this.setState ({
 			renderArticles : 'knowhow-hideArticles',
 			renderChat : 'knowhow-chat-wrapper'
-		})
+		});
 	}
 
-   handleOpenArticle = (articleId) => {
+  handleOpenArticle = (articleId) => {
+  	this.props.gtag('event', 'view_item', {
+  		'event_label': this.state.categoryId,
+  		'companyId': this.props.companyId,
+  		'categoryId': this.state.categoryId,
+		  'articleId': articleId.toString()
+		});
    	var hashids = new Hashids('knowhow-api', 16);
     axios.get(`http://ec2-54-153-34-178.us-west-1.compute.amazonaws.com:3000/api/${this.props.companyId}/article/${hashids.encode(articleId)}`)
     .then(response => {
@@ -64,7 +78,6 @@ class Widget extends React.Component {
   	this.setState = {
   		activeKey
   	}
-
   }
 
 	handleToggleOpen = () => {
@@ -77,9 +90,21 @@ class Widget extends React.Component {
 				showDockedWidget,
 				open: !prev.open
 			}
+		}, () => {
+				if(this.state.open) {
+				this.props.gtag('event', 'screen_view', {
+				  'companyId': this.props.companyId
+				});
+			}
 		})
 	}
 
+	openCategory = (e) => {
+		this.setState({categoryId: e})
+		this.props.gtag('event', 'view_item_list', {
+		  'categoryId': e.toString()
+		});
+	}
 
 	handleWidgetExit = () => {
 		this.setState({
@@ -91,6 +116,15 @@ class Widget extends React.Component {
 		this.setState({
 			renderChat : 'knowhow-chat-wrapper-show'
 		})
+	}
+
+	poll = (e) => {
+		this.props.gtag('event', 'select_content', {
+		  'event_label': e.target.id,
+  		'companyId': this.props.companyId,
+  		'categoryId': this.state.categoryId,
+		  'articleId': e.target.innerHTML.toString()
+		});
 	}
 
 	renderBody = () => {
@@ -134,18 +168,27 @@ class Widget extends React.Component {
 		// Performance testing - rendering data inline vs child components
 		const showArticles = this.state.articleDetails.map(article => {
 			return (
-				<div className="knowhow-company" key={article.id}>
-				<div className="knowhow-widget-article-featuredArticle" dangerouslySetInnerHTML={{__html: article.title}}></div>
-				</div>
+				<li key={article.id}>
+	        <Icon
+	          type="file-text"
+	          style={{ fontSize: 22}}
+	          className="dock-button" />
+	        <div className="knowhow-article" onClick={(categoryArticle) => this.handleOpenArticle(article.id)}>{article.title}</div>
+        </li>
 				);
 		});
 
 		const renderCategoryArticles = this.state.articles.map(article => {
 			return (
-				<div className="knowhow-widget-article" key={article.id}>
-				<div className="knowhow-widget-article-mainTitle" dangerouslySetInnerHTML={{__html: article.title}}></div>
-				<div className="knowhow-widget-article-mainDescription"  dangerouslySetInnerHTML={{__html: article.description}}></div>
-				<div className="knowhow-widget-article-mainContent"  dangerouslySetInnerHTML={{__html: article.content}}></div>
+				<div>
+					<div id="article" className="knowhow-widget-article" key={article.id}>
+						<div className="knowhow-widget-article-mainTitle" dangerouslySetInnerHTML={{__html: article.title}}></div>
+						<div className="knowhow-widget-article-mainDescription"  dangerouslySetInnerHTML={{__html: article.description}}></div>
+						<div className="knowhow-widget-article-mainContent"  dangerouslySetInnerHTML={{__html: article.content}}></div>
+					</div>
+					<div className="feedback">
+					Helpful? <button id={article.id} onClick={this.poll}>Yes</button><button id={article.id} onClick={this.poll}>No</button>
+					</div>
 				</div>
 				)
 		});
@@ -167,9 +210,9 @@ class Widget extends React.Component {
 					<div className="knowhow-chat-box">
 					 <span className="knowhow-chat-title">Start a conversation</span><br/>
 					 <div className="knowhow-chat-newConversation" onClick={this.openChatService}>
-					 <Icon 
-			          type="wechat" 
-			          style={{ fontSize: 22}} 
+					 <Icon
+			          type="wechat"
+			          style={{ fontSize: 22}}
 			          className="dock-button"/>
 					 <span>New Conversation</span>
 	      			 </div>
@@ -184,7 +227,7 @@ class Widget extends React.Component {
 					<Row className="widget-body">
 					<Col className="body-categories">
 					<span className="knowhow-search-title">Categories</span><br/>
-					<Collapse bordered={false}>
+					<Collapse accordion bordered={false} onChange={this.openCategory}>
 						{renderCategories}
 					</Collapse>
 					</Col>
