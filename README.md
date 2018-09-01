@@ -1,6 +1,6 @@
 # Project Name
 
-> Know-How React Widget 
+> Know-How React Widget
 
 ## Team
 
@@ -26,6 +26,8 @@
  EmbeddableWidget.mount();
  </script>
 ```
+Every website in which the widget is embedded must be whitelisted in the Google Developer Console in order to take advantage of Google Analytics.
+
 ## Requirements
 
 - React
