@@ -29,6 +29,9 @@ class Widget extends React.Component {
 			axios.get(`http://ec2-54-153-34-178.us-west-1.compute.amazonaws.com:3000/api/${this.props.companyId}`),
 			axios.get(`http://ec2-54-153-34-178.us-west-1.compute.amazonaws.com:3000/api/${this.props.companyId}/categoriesdata`),
 			axios.get(`http://ec2-54-153-34-178.us-west-1.compute.amazonaws.com:3000/api/${this.props.companyId}/articlesdata`)
+			// axios.get(`http://localhost:3000/api/${this.props.companyId}`),
+			// axios.get(`http://localhost:3000/api/${this.props.companyId}/categoriesdata`),
+			// axios.get(`http://localhost:3000/api/${this.props.companyId}/articlesdata`)
 			])
     .then(([companyDetails, categoryDetails, articleDetails]) => {
     	this.setState({

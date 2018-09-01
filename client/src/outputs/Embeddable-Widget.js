@@ -52,7 +52,6 @@ class EmbeddableWidget extends React.Component {
 
     //check if load event is about to fire.
     if (document.readyState === 'complete') {
-      console.log('calling doRender')
       // gapi.load('auth2', start);
       doRender();
     } else {
