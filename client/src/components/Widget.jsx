@@ -119,8 +119,12 @@ class Widget extends React.Component {
 	}
 
 	poll = (e) => {
-		console.log('e.target inside poll: ', e.target.innerHTML)
-		// this.props.gtag
+		this.props.gtag('event', 'select_content', {
+		  'event_label': e.target.id,
+  		'companyId': this.props.companyId,
+  		'categoryId': this.state.categoryId,
+		  'articleId': e.target.innerHTML.toString()
+		});
 	}
 
 	renderBody = () => {
@@ -164,17 +168,26 @@ class Widget extends React.Component {
 		// Performance testing - rendering data inline vs child components
 		const showArticles = this.state.articleDetails.map(article => {
 			return (
-				<li className="knowhow-company" key={article.id}>{article.title}</li>);
+				<li key={article.id}>
+	        <Icon
+	          type="file-text"
+	          style={{ fontSize: 22}}
+	          className="dock-button" />
+	        <div className="knowhow-article" onClick={(categoryArticle) => this.handleOpenArticle(article.id)}>{article.title}</div>
+        </li>
+				);
 		});
 
 		const renderCategoryArticles = this.state.articles.map(article => {
 			return (
-				<div id="article" className="knowhow-widget-article" key={article.id}>
-					<div className="knowhow-widget-article-mainTitle" dangerouslySetInnerHTML={{__html: article.title}}></div>
-					<div className="knowhow-widget-article-mainDescription"  dangerouslySetInnerHTML={{__html: article.description}}></div>
-					<div className="knowhow-widget-article-mainContent"  dangerouslySetInnerHTML={{__html: article.content}}></div>
-					<div>
-					Helpful? <button onClick={this.poll}>Yes</button><button onClick={this.poll}>No</button>
+				<div>
+					<div id="article" className="knowhow-widget-article" key={article.id}>
+						<div className="knowhow-widget-article-mainTitle" dangerouslySetInnerHTML={{__html: article.title}}></div>
+						<div className="knowhow-widget-article-mainDescription"  dangerouslySetInnerHTML={{__html: article.description}}></div>
+						<div className="knowhow-widget-article-mainContent"  dangerouslySetInnerHTML={{__html: article.content}}></div>
+					</div>
+					<div className="feedback">
+					Helpful? <button id={article.id} onClick={this.poll}>Yes</button><button id={article.id} onClick={this.poll}>No</button>
 					</div>
 				</div>
 				)
