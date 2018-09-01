@@ -134,7 +134,10 @@ class Widget extends React.Component {
 		// Performance testing - rendering data inline vs child components
 		const showArticles = this.state.articleDetails.map(article => {
 			return (
-				<li className="knowhow-company" key={article.id}>{article.title}</li>);
+				<div className="knowhow-company" key={article.id}>
+				<div className="knowhow-widget-article-featuredArticle" dangerouslySetInnerHTML={{__html: article.title}}></div>
+				</div>
+				);
 		});
 
 		const renderCategoryArticles = this.state.articles.map(article => {
